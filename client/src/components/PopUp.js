@@ -31,7 +31,7 @@ const PopUp = () => {
           be used outside of educational purposes.
         </p>
         <p>
-          Some features of this site don't work as it is just a close to
+          So some features of this site are not meant to work as it is just a clone to
           showcase specific skills. To test out the site, it is recommended to
           follow the links that are checked with the following symbol{" "}
           <BsPatchCheckFill />
