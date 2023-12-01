@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.722a1e9f.css",
+    "main.js": "/static/js/main.cc49221f.js",
+    "static/media/signupLarge.png": "/static/media/signupLarge.b7f3e2a49d5eda9e1463.png",
+    "static/media/signup.png": "/static/media/signup.6c9a5b763c764348260c.png",
+    "static/media/twogirls.jpg": "/static/media/twogirls.beebd3b3234cb40938ad.jpg",
+    "static/media/loader.gif": "/static/media/loader.803f24369a085e35482e.gif",
+    "static/media/loadingDots5.gif": "/static/media/loadingDots5.35b74e27e5788530aec6.gif",
+    "static/media/logo.svg": "/static/media/logo.52c4448f73af91990f4b76606ff6223b.svg",
+    "index.html": "/index.html",
+    "main.722a1e9f.css.map": "/static/css/main.722a1e9f.css.map",
+    "main.cc49221f.js.map": "/static/js/main.cc49221f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.722a1e9f.css",
+    "static/js/main.cc49221f.js"
+  ]
+}
