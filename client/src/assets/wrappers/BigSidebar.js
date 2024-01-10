@@ -9,7 +9,6 @@ const Wrapper = styled.aside`
     background: var(--white);
     /* min-height: 100vh; */
     height: 100%;
-    user-zoom: fixed;
     width: 30rem;
     margin-left: -30rem;
     transition: var(--transition);
