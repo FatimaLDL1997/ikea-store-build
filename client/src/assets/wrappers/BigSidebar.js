@@ -20,6 +20,7 @@ const Wrapper = styled.aside`
     position: sticky;
     top: 0;
     padding-top: 1rem;
+    overflow: hidden;
   }
   .content img {
     width: 5.5rem;
@@ -60,6 +61,7 @@ const Wrapper = styled.aside`
     flex-direction: row;
     align-items: center;
     padding-left: 2.5rem;
+
   }
   header svg {
     cursor: pointer;
