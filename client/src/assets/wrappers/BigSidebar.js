@@ -47,16 +47,15 @@ const Wrapper = styled.aside`
     transition: ease-in-out all;
   }
   header {
-    /* height: 4rem; */
-    position: fixed;
+    position: absolute;
     display: flex;
     
     background: white;
 
     width: 451px;
-    height: 8rem;
+    height: 6rem;
     
-    top: 0;
+    top: 15px;
 
     flex-direction: row;
     align-items: center;
