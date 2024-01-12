@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Wrapper from "../../assets/wrappers/sub-wrappers/NewProducts";
 
 import { Navigation, Scrollbar, Pagination } from "swiper/modules";
@@ -11,11 +11,19 @@ import "swiper/css/scrollbar";
 
 import products from "../../utils/products";
 import NewProduct from "./NewProduct";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../context/appContext";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar]);
+
 const NewProducts = () => {
-  const navigate = useNavigate()
+  const { windowWidth } = useAppContext();
+
+  useEffect(() => {
+    console.log("window Width: **");
+    console.log(windowWidth);
+  });
+  const navigate = useNavigate();
   return (
     // eslint-disable-line no-eval
 
@@ -27,7 +35,12 @@ const NewProducts = () => {
           <h2>Brighten your home with vibrant updates in just a few clicks.</h2>
         </div>
         <div className="see-all-btn-container">
-          <button className="see-all-btn" onClick={()=>navigate('/all-new-products')}>See all new products</button>
+          <button
+            className="see-all-btn"
+            onClick={() => navigate("/all-new-products")}
+          >
+            See all new products
+          </button>
         </div>
       </div>
       <div className="product-box">
@@ -35,13 +48,13 @@ const NewProducts = () => {
           className="swiper-slider-container"
           // effect={"coverflow"}
           grabCursor={true}
-          spaceBetween={50}
-          slidesPerView={3}
+          spaceBetween={windowWidth>600 ? 50:300}
+          slidesPerView={windowWidth > 600 ? 3 : 2}
           centeredSlides={false}
           keyboard={true}
           scrollbar={{ draggable: true }}
         >
-          {products.slice(0,5).map((product) => {
+          {products.slice(0, 5).map((product) => {
             return (
               <SwiperSlide key={product.id}>
                 <NewProduct {...product}></NewProduct>
@@ -50,7 +63,6 @@ const NewProducts = () => {
           })}
         </Swiper>
       </div>
-
     </Wrapper>
   );
 };

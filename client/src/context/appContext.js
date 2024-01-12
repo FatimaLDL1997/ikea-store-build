@@ -305,8 +305,8 @@ const AppProvider = ({ children }) => {
         return oldTotal;
       });
     });
-   console.log('favs total: ')
-   console.log(totalFavs)
+  //  console.log('favs total: ')
+  //  console.log(totalFavs)
   };
   //-------------backend functions ---------------
 
