@@ -48,8 +48,8 @@ const NewProducts = () => {
           className="swiper-slider-container"
           // effect={"coverflow"}
           grabCursor={true}
-          spaceBetween={windowWidth>600 ? 50:300}
-          slidesPerView={windowWidth > 600 ? 3 : 2}
+          spaceBetween={50}
+          slidesPerView={windowWidth > 600 ? 2: 1}
           centeredSlides={false}
           keyboard={true}
           scrollbar={{ draggable: true }}
