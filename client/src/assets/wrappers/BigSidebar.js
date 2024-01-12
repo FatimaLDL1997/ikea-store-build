@@ -31,13 +31,7 @@ const Wrapper = styled.aside`
   .show-sidebar {
     margin-left: 0;
   }
-  header {
-    height: 6rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-left: 2.5rem;
-  }
+
   .close-container {
     width: 2rem;
     height: 2rem;
@@ -53,11 +47,20 @@ const Wrapper = styled.aside`
     transition: ease-in-out all;
   }
   header {
+    /* height: 4rem; */
     position: fixed;
-    height: 4rem;
+    display: flex;
+    
     background: white;
+
     width: 451px;
+    height: 8rem;
+    
     top: 0;
+
+    flex-direction: row;
+    align-items: center;
+    padding-left: 2.5rem;
   }
   header svg {
     cursor: pointer;
@@ -70,7 +73,7 @@ const Wrapper = styled.aside`
   }
 
   .container {
-    /* padding-top: 3rem; */
+    padding-top: 3rem;
     width: 100%;
   }
   .login-btn {
