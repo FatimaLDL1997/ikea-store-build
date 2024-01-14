@@ -18,9 +18,10 @@ const Wrapper = styled.nav`
     flex-direction: column;
     position: absolute;
     top: 0;
-    right: 0;
+    /* right: 0; */
+    left: 0;
     height: fit-content;
-    width: 100%;
+    width: 100vw;
     background-color: white;
   }
   .nav-center {

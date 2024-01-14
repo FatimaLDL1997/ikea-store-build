@@ -51,7 +51,9 @@ const Wrapper = styled.div`
     padding: 0.5rem 1rem 0.5rem 1rem;
     background-color: white;
     font-size: 0.8rem;
+    border-color: black;
     font-weight: 550;
+    color: black;
   }
   .see-all-btn:hover{
     cursor: pointer;
