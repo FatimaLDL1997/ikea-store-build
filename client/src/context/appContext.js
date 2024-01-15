@@ -167,9 +167,15 @@ const AppProvider = ({ children }) => {
   });
 
   const [showPopUp, setShowPopUp] = useState(false);
+  const [showInfo, setShowInfo] = useState(true);
+
 
   const togglePopUp = () => {
     setShowPopUp(!showPopUp);
+  };
+
+  const toggleInfoPopUp = () => {
+    setShowInfo(!showInfo);
   };
 
   const setWindowDimensions = () => {
@@ -507,7 +513,12 @@ const AppProvider = ({ children }) => {
 
         setShowPopUp,
         showPopUp,
+        showInfo, 
+        setShowInfo, 
+
         togglePopUp,
+        toggleInfoPopUp, 
+        
         forceUpdate,
         total,
         calTotal,

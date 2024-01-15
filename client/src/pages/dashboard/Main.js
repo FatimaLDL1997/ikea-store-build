@@ -5,12 +5,12 @@ import { useAppContext } from "../../context/appContext";
 import { PopUp } from "../../components";
 
 const Main = () => {
-  const { user } = useAppContext();
+  const { showInfo, toggleInfoPopUp } = useAppContext();
 
   return (
     <Wrapper>
-      <div className="main-content">
-        <div className="popup-container" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+      <div className="main-content" >
+        <div className="popup-container">
           <div className="popup">{<PopUp />}</div>
         </div>
         <h1 className="welcome">Welcome to IKEA Canada</h1>

@@ -4,13 +4,27 @@ import { BsPatchCheckFill } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
 import { motion } from "framer-motion";
 import { popupAnimation } from "./Animations";
-
-const handleClose = () => {
-  const exitButton = document.querySelector(".cross-container");
-  exitButton.parentElement.style.display = "none";
-};
+import { useAppContext } from "../context/appContext";
 
 const PopUp = () => {
+  const bodyElement = document.getElementsByClassName("body");
+
+  const { showInfo, toggleInfoPopUp } = useAppContext();
+  if (showInfo) {
+    bodyElement[0].style.overflowY = "hidden";
+  }
+  console.log(bodyElement[0].style.overflowY);
+
+  const handleClose = () => {
+    const exitButton = document.querySelector(".cross-container");
+    exitButton.parentElement.style.display = "none";
+    toggleInfoPopUp();
+    bodyElement[0].style.overflowY = "visible";
+    console.log(bodyElement[0].style.overflowY);
+  };
+
+  console.log(showInfo);
+
   return (
     <Wrapper>
       <motion.div
@@ -31,10 +45,10 @@ const PopUp = () => {
           be used outside of educational purposes.
         </p>
         <p>
-          So some features of this site are not meant to work as it is just a clone to
-          showcase specific skills. To test out the site and have the best experience, it is recommended to
-          follow the links that are checked with the following symbol{" "}
-          <BsPatchCheckFill />
+          So some features of this site are not meant to work as it is just a
+          clone to showcase specific skills. To test out the site and have the
+          best experience, it is recommended to follow the links that are
+          checked with the following symbol <BsPatchCheckFill />
         </p>
         <p>Thanks You</p>
       </motion.div>

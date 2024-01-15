@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.section`
   background-color: white;
+
   .dashboard {
     display: grid;
     grid-template-columns: 1fr;
@@ -41,11 +42,9 @@ const Wrapper = styled.section`
   @media (min-width: 992px) {
     .dashboard {
       grid-template-columns: auto 1fr;
-    }
-    
-    .dashboard{
       display: inline !important;
     }
+    
   }
 
   @media (max-width: 1700px) {

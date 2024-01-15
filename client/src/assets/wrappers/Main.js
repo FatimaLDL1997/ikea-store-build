@@ -2,26 +2,39 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   //when small on top of each other --> col
-  .main-content{
-    
+  /* .main-content{
+    overflow: visible;
+  } */
+  .popup-container{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+  
+
   }
   .popup-text {
     position: relative;
     background: white;
     width: 80vw;
-    height: fit-content;
+    height: 60vh;
     border: 4px #1565c0 solid;
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 1rem;
     padding: 1.5rem;
+    overflow-y: scroll;
+    
     /* overflow-y: scroll; */
     
     .title {
-      margin-bottom: 0;
+      margin: 0;
+
       margin-top: 0;
       font-size: 1.5rem;
+    }
+    p{
+    font-size: 1rem;
+
     }
   }
   .cross-container {
@@ -34,6 +47,7 @@ const Wrapper = styled.div`
   }
   .cross-container svg {
     /* padding: 10px; */
+    font-size: 1rem;
   }
   .cross-container:hover {
     cursor: pointer;
