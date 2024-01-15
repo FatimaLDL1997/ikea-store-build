@@ -130,7 +130,7 @@ const SignIn = () => {
           onSubmit={onSubmit}
           style={{
             width: windowWidth < 640 && "100%",
-            marginTop: windowWidth < 640 && "12rem",
+            marginTop: windowWidth < 640 && "0rem",
           }}
         >
           <div>

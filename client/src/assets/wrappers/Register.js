@@ -174,8 +174,10 @@ input{
     font-family: "Roboto", sans-serif;
   }
   @media (max-width: 640px) {
+
     .second-side h2 {
       padding-top: 0 !important;
+      
     }
   }
   .info {

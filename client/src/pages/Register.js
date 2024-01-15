@@ -136,7 +136,7 @@ const Register = () => {
           className="second-side"
           style={{
             width: windowWidth < 640 && "100%",
-            marginTop: windowWidth < 640 && "12rem",
+            marginTop: windowWidth < 640 && "0rem", 
           }}
         >
           <h2 style={{ fontSize: "13px", paddingTop: "6rem" }}>

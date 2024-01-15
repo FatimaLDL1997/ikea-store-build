@@ -9,6 +9,7 @@ const Wrapper = styled.div`
     flex-direction: row;
     width: 100%;
     height: auto;
+    background-color: whitesmoke;
   }
   .top {
     display: flex;
