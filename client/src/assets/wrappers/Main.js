@@ -54,7 +54,7 @@ const Wrapper = styled.div`
     color: #1565c0;
   }
   .popup {
-    top: 15vh;
+    top: 10vh;
     /* right: 50%; */
     /* width: 19%; */
     position: fixed;
