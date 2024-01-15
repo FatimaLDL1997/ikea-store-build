@@ -143,7 +143,18 @@ const Wrapper = styled.div`
   .filter-container .price-btn:hover {
     background-color: lightgray;
     cursor: pointer;
+    color: black 
+
   }
+  /* .filter-container .features-btn,
+  .filter-container .type-btn,
+  .filter-container .category-btn,
+  .filter-container .sort-btn,
+  .filter-container .size-btn,
+  .filter-container .color-btn,
+  .filter-container .price-btn {
+    
+  } */
 
   @media (min-width: 900px) {
     .items-container {
@@ -154,40 +165,9 @@ const Wrapper = styled.div`
     }
   }
   @media (max-width: 900px) {
-    .filter-container .features-btn,
-    .filter-container .type-btn,
-    .filter-container .category-btn,
-    .filter-container .price-btn {
-      display: none;
-    }
-    .category-container,
-    .price-container,
-    .features-container,
-    .type-container {
-      position: fixed;
-    }
+  .up-arrow, .down-arrow {
+    display: none !important;
   }
-  @media (max-width: 1000px) {
-    .filter-container .type-btn,
-    .filter-container .category-btn,
-    .filter-container .price-btn {
-      display: none;
-    }
-    .type-container,
-    .category-container,
-    .price-container {
-      position: fixed;
-    }
-  }
-  @media (max-width: 1100px) {
-    .filter-container .category-btn,
-    .filter-container .price-btn {
-      display: none;
-    }
-    .category-container,
-    .price-container {
-      position: fixed;
-    }
   }
 
   .up-arrow {
@@ -198,11 +178,14 @@ const Wrapper = styled.div`
     display: flex;
     position: relative;
   }
+
+
   .filter-container {
     display: flex;
     padding-top: 2rem;
     margin-bottom: 6rem;
     gap: 1rem;
+    /* overflow: hidden; */
     padding-bottom: 2rem;
     border-bottom: 1px solid lightgrey;
     button {
@@ -216,6 +199,7 @@ const Wrapper = styled.div`
       padding: 0.5rem 0.9rem 0.5rem 0.9rem;
       width: 7rem;
       height: 2.5rem;
+      color: black;
     }
   }
   .box {
@@ -263,6 +247,8 @@ const Wrapper = styled.div`
     background-color: white;
     cursor: pointer;
     border: 1px solid lightgray;
+    color: black;
+
   }
   .room-btn {
     border-bottom-right-radius: 5px;
@@ -270,6 +256,8 @@ const Wrapper = styled.div`
     background-color: white;
     cursor: pointer;
     border: 1px solid lightgray;
+    color: black;
+
   }
   .product-btn:hover {
     border: 1px solid darkgray;
@@ -284,6 +272,7 @@ const Wrapper = styled.div`
     border-top-right-radius: 5px;
     background-color: white;
     cursor: pointer;
+    color: black;
   }
   .product-btn-active {
     border: 1px solid black;
@@ -291,6 +280,8 @@ const Wrapper = styled.div`
     border-top-left-radius: 6px;
     background-color: white;
     cursor: pointer;
+    color: black;
+
   }
   .room-btn-active {
     border: 1px solid black;
@@ -298,6 +289,8 @@ const Wrapper = styled.div`
     border-top-right-radius: 6px;
     background-color: white;
     cursor: pointer;
+    color: black;
+
   }
 
   .sort-cntr {

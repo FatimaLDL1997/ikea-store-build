@@ -2,11 +2,28 @@ import React, { useEffect, useState, useRef } from "react";
 import Wrapper from "../../assets/wrappers/sub-wrappers/AllNewProducts";
 
 import products from "../../utils/products";
+import filter from "../../utils/filter";
 import { useAppContext } from "../../context/appContext";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { IoIosOptions } from "react-icons/io";
 import { all } from "axios";
 import NewProduct from "./NewProduct";
+
+import {
+  Navigation,
+  Scrollbar,
+  Pagination,
+  Keyboard,
+  Mousewheel,
+} from "swiper/modules";
+import SwiperCore from "swiper";
+// import {Keyboard} from 'swiper/core'
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+SwiperCore.use([Navigation, Pagination, Scrollbar, Mousewheel]);
 
 const AllNewProducts = () => {
   const { windowWidth } = useAppContext();
@@ -36,10 +53,10 @@ const AllNewProducts = () => {
           let up = element.parentElement.children[0].children[0];
           let down = element.parentElement.children[0].children[1];
           // console.log(up);
-          if(up.style.display == 'block'){
+          if (up.style.display == "block") {
             // console.log(up)
-            up.style.display = 'none'
-            down.style.display = 'block'
+            up.style.display = "none";
+            down.style.display = "block";
           }
         });
         console.log("outside");
@@ -161,233 +178,63 @@ const AllNewProducts = () => {
           )}
         </div>
         <div className="filter-container">
-          <div className="sort-container">
-            <button
-              className="sort-btn"
-              onClick={(e) => {
-                clickChange(e);
-              }}
-            >
-              Sort
-              <div className="up-arrow">
-                <AiOutlineUp />
-              </div>
-              <div className="down-arrow">
-                <AiOutlineDown />
-              </div>
-            </button>
-            <div className="box">
-              <div className="sort-container ">
-                <label className="sort-cntr">
-                  Best Match
-                  <input type="radio" name="radio" />
-                  <span
-                    className="checkmark"
-                    onClick={(e) => radioClicked(e)}
-                  ></span>
-                </label>
-                <label className="sort-cntr">
-                  Price: low to high
-                  <input type="radio" name="radio" />
-                  <span
-                    className="checkmark"
-                    onClick={(e) => radioClicked(e)}
-                  ></span>
-                </label>
-                <label className="sort-cntr">
-                  Price: high to low
-                  <input type="radio" name="radio" />
-                  <span
-                    className="checkmark"
-                    onClick={(e) => radioClicked(e)}
-                  ></span>
-                </label>
-                <label className="sort-cntr">
-                  Newest
-                  <input type="radio" name="radio" />
-                  <span
-                    className="checkmark"
-                    onClick={(e) => radioClicked(e)}
-                  ></span>
-                </label>
-                <label className="sort-cntr">
-                  Customer rating
-                  <input type="radio" name="radio" />
-                  <span
-                    className="checkmark"
-                    onClick={(e) => radioClicked(e)}
-                  ></span>
-                </label>
-                <label className="sort-cntr">
-                  Name
-                  <input type="radio" name="radio" />
-                  <span
-                    className="checkmark"
-                    onClick={(e) => radioClicked(e)}
-                  ></span>
-                </label>
-                <label className="sort-cntr">
-                  Most popular
-                  <input type="radio" name="radio" />
-                  <span
-                    className="checkmark"
-                    onClick={(e) => radioClicked(e)}
-                  ></span>
-                </label>
-                <label className="sort-cntr">
-                  width
-                  <input type="radio" name="radio" />
-                  <span
-                    className="checkmark"
-                    onClick={(e) => radioClicked(e)}
-                  ></span>
-                </label>
-                <label className="sort-cntr">
-                  height
-                  <input type="radio" name="radio" />
-                  <span
-                    className="checkmark"
-                    onClick={(e) => radioClicked(e)}
-                  ></span>
-                </label>
-                <label className="sort-cntr">
-                  width
-                  <input type="radio" name="radio" />
-                  <span
-                    className="checkmark"
-                    onClick={(e) => radioClicked(e)}
-                  ></span>
-                </label>
-                <label className="sort-cntr">
-                  length
-                  <input type="radio" name="radio" />
-                  <span
-                    className="checkmark"
-                    onClick={(e) => radioClicked(e)}
-                  ></span>
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div className="size-container">
-            <button
-              className="size-btn"
-              onClick={(e) => {
-                clickChange(e);
-              }}
-            >
-              Size
-              <div className="up-arrow">
-                <AiOutlineUp />
-              </div>
-              <div className="down-arrow">
-                <AiOutlineDown />
-              </div>
-            </button>
-            <div className="box"> box</div>
-          </div>
-
-          <div className="color-container">
-            <button
-              className="color-btn"
-              onClick={(e) => {
-                clickChange(e);
-              }}
-            >
-              Color
-              <div className="up-arrow">
-                <AiOutlineUp />
-              </div>
-              <div className="down-arrow">
-                <AiOutlineDown />
-              </div>{" "}
-            </button>
-            <div className="box"> box</div>
-          </div>
-          <div className="price-container">
-            <button
-              className="price-btn"
-              onClick={(e) => {
-                clickChange(e);
-              }}
-            >
-              Price
-              <div className="up-arrow">
-                <AiOutlineUp />
-              </div>
-              <div className="down-arrow">
-                <AiOutlineDown />
-              </div>
-            </button>
-            <div className="box"> box</div>
-          </div>
-          <div className="category-container">
-            <button
-              className="category-btn"
-              onClick={(e) => {
-                clickChange(e);
-              }}
-            >
-              Category
-              <div className="up-arrow">
-                <AiOutlineUp />
-              </div>
-              <div className="down-arrow">
-                <AiOutlineDown />
-              </div>
-            </button>
-            <div className="box"> box</div>
-          </div>
-
-          <div className="type-container">
-            <button
-              className="type-btn"
-              onClick={(e) => {
-                clickChange(e);
-              }}
-            >
-              Type
-              <div className="up-arrow">
-                <AiOutlineUp />
-              </div>
-              <div className="down-arrow">
-                <AiOutlineDown />
-              </div>
-            </button>
-            <div className="box"> box</div>
-          </div>
-
-          <div className="features-container">
-            <button
-              className="features-btn"
-              onClick={(e) => {
-                clickChange(e);
-              }}
-            >
-              Features
-              <div className="up-arrow">
-                <AiOutlineUp />
-              </div>
-              <div className="down-arrow">
-                <AiOutlineDown />
-              </div>
-            </button>
-            <div className="box"> box</div>
-          </div>
-
-          <button
-            className="all-filters-btn"
-            onClick={() => {
-              setClicked(!clicked);
-            }}
+          <Swiper
+            className="swiper-slider-container"
+            grabCursor={true}
+            spaceBetween={windowWidth < 900 ? 20: 10  }
+            slidesPerView={windowWidth < 400 ? 2: 3  && windowWidth<700? 3:5  && windowWidth<900? 5:7}
+            centeredSlides={false}
+            keyboard={{ enabled: true }}
+            direction="horizontal"
+            mousewhel={{ forceToAxis: true }}
+            // scrollbar={{ draggable: true }}
+            modules={[Keyboard, Mousewheel]}
           >
-            All filters {<IoIosOptions />}{" "}
-          </button>
+            {filter.map((item) => {
+              return (
+                <SwiperSlide>
+                  <div className={item.name}>
+                    <button
+                      className={item.btn}
+                      onClick={(e) => {
+                        clickChange(e);
+                      }}
+                    >
+                      {item.btnText}
+                      <div className="up-arrow">
+                        <AiOutlineUp />
+                      </div>
+                      <div className="down-arrow">
+                        <AiOutlineDown />
+                      </div>
+                    </button>
+
+                    <div className="box">
+                      <div className="sort-container ">
+                        {item.options.map((option) => {
+                          return (
+                            <label className={item.labelName}>
+                              {option}
+                              <input type="radio" name="radio" />
+                              <span
+                                className="checkmark"
+                                onClick={(e) => radioClicked(e)}
+                              ></span>
+                            </label>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
+
         <div className="product-box">
           {products.map((product) => {
-            return <NewProduct key={product.id} {...product} ></NewProduct>;
+            return <NewProduct key={product.id} {...product}></NewProduct>;
           })}
         </div>
       </div>
