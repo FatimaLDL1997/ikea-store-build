@@ -8,8 +8,8 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: auto;
-    background-color: whitesmoke;
+    height: 100%;
+    background-color: #0058a3;
   }
   .top {
     display: flex;
@@ -48,7 +48,7 @@ const Wrapper = styled.div`
     background-color: whitesmoke;
     height: 100%;
     padding: 2rem;
-    position: relative;
+    /* position: relative; */
     top: 2rem;
     width: 60%;
   }
