@@ -73,7 +73,7 @@ const Wrapper = styled.aside`
   }
 
   .container {
-    padding-top: 3rem;
+    /* padding-top: 3rem; */
     width: 100%;
   }
   .login-btn {
