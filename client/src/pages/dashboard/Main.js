@@ -11,7 +11,7 @@ const Main = () => {
     <Wrapper>
       <div className="main-content">
         <div className="popup-container" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-          <div className="popup">{user && <PopUp />}</div>
+          <div className="popup">{<PopUp />}</div>
         </div>
         <h1 className="welcome">Welcome to IKEA Canada</h1>
         <div className="top-container">
