@@ -22,7 +22,7 @@ const Wrapper = styled.aside`
     flex-direction: column;
   }
   .content {
-    position: relative;
+    position: sticky;
     top: 0;
     /* padding-top: 8rem; */
     background-color: #0058a3;
