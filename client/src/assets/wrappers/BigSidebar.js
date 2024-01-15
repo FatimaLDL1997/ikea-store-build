@@ -47,7 +47,7 @@ const Wrapper = styled.aside`
     transition: ease-in-out all;
   }
   header {
-    position: fixed;
+    /* position: fixed; */
     display: flex;
     
     background: white;

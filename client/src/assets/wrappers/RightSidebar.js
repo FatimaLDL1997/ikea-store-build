@@ -22,9 +22,9 @@ const Wrapper = styled.aside`
     flex-direction: column;
   }
   .content {
-    position: sticky;
+    position: relative;
     top: 0;
-    padding-top: 8rem;
+    /* padding-top: 8rem; */
     background-color: #0058a3;
   }
   .content img {
@@ -43,7 +43,9 @@ const Wrapper = styled.aside`
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    position: fixed;
+    /* position: fixed; */
+    padding-bottom: 3rem;
+
     height: 4rem;
     background: white;
     width: 30rem;
