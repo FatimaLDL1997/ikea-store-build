@@ -70,7 +70,7 @@ const Wrapper = styled.aside`
     padding-top: 2rem;
     padding-bottom: 2rem;
     border-bottom: 0.1px solid #13a7ff;
-    padding-left: 2rem;
+    padding-left: 4rem;
     padding-right: 4rem;
   }
   .first-row button {
