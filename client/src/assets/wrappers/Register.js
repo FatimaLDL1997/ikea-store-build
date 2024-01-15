@@ -14,7 +14,7 @@ input{
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: inherit;
+    /* height: inherit; */
   }
   .top {
     display: flex;

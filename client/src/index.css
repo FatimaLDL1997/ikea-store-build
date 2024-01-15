@@ -79,7 +79,7 @@ body {
 }
 
 .hide-overflow-y {
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 
 }
 
