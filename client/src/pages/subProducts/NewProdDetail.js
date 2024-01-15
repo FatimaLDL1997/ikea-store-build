@@ -231,7 +231,6 @@ const NewProdDetail = ({ fav }) => {
     togglePopUp();
 
     window.scrollTo(0, 0);
-    if (user) {
       setCartItems((prevItems) => {
         let tempItem = [
           {
@@ -289,10 +288,7 @@ const NewProdDetail = ({ fav }) => {
           return prevItems;
         }
       });
-    }
-    else{
-      console.log('not logged in ')
-    }
+  
   };
 
   return (
