@@ -459,7 +459,7 @@ const Wrapper = styled.nav`
     .loc-store-small {
       padding-left: 0rem;
       padding-right: 0rem;
-      padding-top: 1rem;
+      padding-top: 2rem;
     }
     .search-container {
       padding-top: 0.5rem;

@@ -81,6 +81,8 @@ const Wrapper = styled.aside`
     height: 3.5rem;
     font-size: 17px;
     font-weight: 700;
+    color: black;
+    
     
   }
   .second-row button {

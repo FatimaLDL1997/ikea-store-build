@@ -96,9 +96,11 @@ const Wrapper = styled.aside`
   }
   .login-btn svg {
     font-size: 1.4rem;
+    color:black; 
   }
   .login-btn .text {
     padding-left: 12px;
+    color: black; 
   }
   .login-btn:hover {
     /* border: none; */

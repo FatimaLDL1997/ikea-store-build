@@ -32,7 +32,7 @@ const PopUp = () => {
         </p>
         <p>
           So some features of this site are not meant to work as it is just a clone to
-          showcase specific skills. To test out the site, it is recommended to
+          showcase specific skills. To test out the site and have the best experience, it is recommended to
           follow the links that are checked with the following symbol{" "}
           <BsPatchCheckFill />
         </p>

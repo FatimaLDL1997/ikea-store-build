@@ -13,7 +13,7 @@ const Wrapper = styled.aside`
     width: 30rem;
     margin-right: -30rem;
     transition: var(--transition);
-    position: fixed;
+    position:fixed; 
     left: auto;
     top: 0;
 
