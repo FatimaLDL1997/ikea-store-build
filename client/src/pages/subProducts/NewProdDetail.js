@@ -80,6 +80,7 @@ const NewProdDetail = ({ fav }) => {
     getFavItems,
     found,
     foundFav,
+    user,
   } = useAppContext();
 
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -90,12 +91,11 @@ const NewProdDetail = ({ fav }) => {
     await delay(3000);
     // console.log("after");
     setLoading(false);
-  
   }
 
-  async function timeNotification (){
-    await delay(5000)
-    setFoundFavItem(false)
+  async function timeNotification() {
+    await delay(5000);
+    setFoundFavItem(false);
   }
   const handleExitNotification = () => {
     setFoundFavItem(false);
@@ -209,7 +209,7 @@ const NewProdDetail = ({ fav }) => {
       } else {
         console.log("found fav item");
         setFoundFavItem(true);
-        timeNotification()
+        timeNotification();
         //modify that particular element in the list
         prevItems.splice(foundIndex, 1, tempItem);
         makeDelay();
@@ -228,65 +228,73 @@ const NewProdDetail = ({ fav }) => {
   };
   const addToCart = (e) => {
     //adds first item here
+    togglePopUp();
 
-    setCartItems((prevItems) => {
-      let tempItem = [
-        {
-          id: id, //need item
-          text: text,
-          type: type,
-          size: size,
-          price: price,
-          articleNum: articleNum,
-          availability: availability,
-          optionSelected: option,
-          options: options[option], //includes color and img
-          img: options[option].img1,
-          color: options[option].color,
-          amount: itemAmount,
-        },
-      ];
-      // console.log(cartItems)
+    window.scrollTo(0, 0);
+    if (user) {
+      setCartItems((prevItems) => {
+        let tempItem = [
+          {
+            id: id, //need item
+            text: text,
+            type: type,
+            size: size,
+            price: price,
+            articleNum: articleNum,
+            availability: availability,
+            optionSelected: option,
+            options: options[option], //includes color and img
+            img: options[option].img1,
+            color: options[option].color,
+            amount: itemAmount,
+          },
+        ];
+        // console.log(cartItems)
 
-      // check for duplicate items in cartItems
-      let foundIndex = cartItems.findIndex(
-        (el) => el[0].id == id && el[0].options.color == options[option].color
-      );
+        // check for duplicate items in cartItems
+        let foundIndex = cartItems.findIndex(
+          (el) => el[0].id == id && el[0].options.color == options[option].color
+        );
 
-      // console.log(cartItems);
-      // console.log(foundIndex);
+        // console.log(cartItems);
+        // console.log(foundIndex);
 
-      //if no same item found:
-      if (foundIndex < 0 || !found) {
-        prevItems.push(tempItem);
-        makeDelay();
-        //if at least 1 item is found
-        if (cartItems.length > 1) {
-          //add item to the same cartItems list
-          updateCartItems({ cartItems });
+        //if no same item found:
+        if (foundIndex < 0 || !found) {
+          prevItems.push(tempItem);
+          makeDelay();
+          //if at least 1 item is found
+          if (cartItems.length > 1) {
+            //add item to the same cartItems list
+            updateCartItems({ cartItems });
 
-          //if no items exist in the array
+            //if no items exist in the array
+          } else {
+            //post a brand new list of cartItems
+            sendCartItems();
+          }
+          togglePopUp();
+          return prevItems;
+
+          // if same item found
         } else {
-          //post a brand new list of cartItems
-          sendCartItems();
+          //modify that particular element in the list
+          prevItems.splice(foundIndex, 1, tempItem);
+          makeDelay();
+
+          updateCartItems({ cartItems });
+          addCartItemsToLocalStorage({ cartItems });
+
+          togglePopUp();
+          return prevItems;
         }
-        togglePopUp();
-        return prevItems;
-
-        // if same item found
-      } else {
-        //modify that particular element in the list
-        prevItems.splice(foundIndex, 1, tempItem);
-        makeDelay();
-
-        updateCartItems({ cartItems });
-        addCartItemsToLocalStorage({ cartItems });
-
-        togglePopUp();
-        return prevItems;
-      }
-    });
+      });
+    }
+    else{
+      console.log('not logged in ')
+    }
   };
+
   return (
     <Wrapper>
       <>
@@ -321,12 +329,12 @@ const NewProdDetail = ({ fav }) => {
                     display: "flex",
                     justifyContent: "center",
                     width: "10%",
-                    paddingRight:'0.3rem',
-                    alignItems:'center', 
+                    paddingRight: "0.3rem",
+                    alignItems: "center",
                   }}
                   onClick={() => handleExitNotification()}
                 >
-                  <RxCross2/>
+                  <RxCross2 />
                 </div>
               </div>
             )}
@@ -351,7 +359,7 @@ const NewProdDetail = ({ fav }) => {
                 return (
                   <div key={id2} className="slide">
                     <SwiperSlide key={id2}>
-                      <img src={img2} />
+                      <img src={img2} className="detailed-img" />
                     </SwiperSlide>
                   </div>
                 );
@@ -547,12 +555,12 @@ const NewProdDetail = ({ fav }) => {
                     display: "flex",
                     justifyContent: "center",
                     width: "10%",
-                    paddingRight:'0.3rem',
-                    alignItems:'center', 
+                    paddingRight: "0.3rem",
+                    alignItems: "center",
                   }}
                   onClick={() => handleExitNotification()}
                 >
-                  <RxCross2/>
+                  <RxCross2 />
                 </div>
               </div>
             )}

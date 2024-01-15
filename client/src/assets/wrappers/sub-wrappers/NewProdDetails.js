@@ -1,6 +1,10 @@
 import styled from "styled-components";
 const Wrapper = styled.div`
   /*  */
+  .detailed-img{
+   height: 80vh;
+  }
+
   .add-to-fav {
     font-size: 1.5rem;
   }
@@ -56,6 +60,12 @@ const Wrapper = styled.div`
       /* justify-content: center; */
       /* align-items: center ; */
     }
+ 
+  }
+  @media (max-width: 500px) {
+    .detailed-img {
+      height: 30vh;
+    } 
   }
   .images-container {
     display: flex;
@@ -112,6 +122,8 @@ const Wrapper = styled.div`
     align-items: flex-start;
     margin-left: 20px;
     width: 15rem;
+    color: black;
+
   }
   .details-container .add-to-fav-container {
     position: relative;
@@ -167,6 +179,7 @@ const Wrapper = styled.div`
   }
   .bottom-side .inc-dec-btn {
     width: 100%;
+    color: black;
   }
   .articleNum-container {
     display: flex;
@@ -277,6 +290,7 @@ const Wrapper = styled.div`
   .delivery-btn svg,
   .pickup-btn svg {
     font-size: 20px;
+    color: black;
   }
   .swiper-slider-container {
     /* width: 100%; */

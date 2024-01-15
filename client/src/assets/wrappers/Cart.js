@@ -29,6 +29,7 @@ const Wrapper = styled.div`
     align-items: center;
     width: 48%;
     height: 100px;
+    color: black; 
     gap: 1rem;
     padding-left: 1rem;
     background-color: white;
@@ -107,6 +108,7 @@ const Wrapper = styled.div`
     justify-content: space-around;
     align-items: center;
     background-color: white;
+    color: black;
   }
   .minus-container,
   .plus-container {

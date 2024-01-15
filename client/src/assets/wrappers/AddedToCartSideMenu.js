@@ -8,9 +8,9 @@ const Wrapper = styled.aside`
   .sidebar-popup-container {
     background: var(--white);
     /* min-height: 100vh; */
-    height: 100%;
+    /* height: 100%; */
 
-    width: 30rem;
+    width: 27rem;
     margin-right: -30rem;
     transition: var(--transition);
     position:fixed; 
@@ -19,7 +19,8 @@ const Wrapper = styled.aside`
 
     right: 0px;
     z-index: 99;
-    overflow-y: auto;
+    height: 150vh;
+    overflow: hidden !important;
     display: flex;
     flex-direction: column;
     background-color: white;
