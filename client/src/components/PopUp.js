@@ -39,15 +39,16 @@ const PopUp = () => {
         <p className="title">Hi there!</p>
         <p style={{ borderTop: "0", marginBottom: "0" }}>__________________</p>
         <p>
-          This is a clone of the IKEA website for learning purposes only. This
-          IKEA clone is designed by me to showcase my skills in database
-          manipulation, management and in authentication and is not intended to
-          be used outside of educational purposes.
+          This is a clone of the IKEA website for learning purposes only and
+          to showcase my skills in database manipulation, management and 
+          authentication. It is not intended to be used outside of 
+          educational purposes and will not allow any real purchases.
         </p>
         <p>
-          So some features of this site are not meant to work as it is just a
-          clone to showcase specific skills. To test out the site and have the
-          best experience, it is recommended to follow the links that are
+          So, some features of this site are not completely functional.
+          For the best experience in testing this site, 
+          it is recommended to ONLY follow
+          the sidebar links that are
           checked with the following symbol <BsPatchCheckFill />
         </p>
         <p>Thanks You</p>
