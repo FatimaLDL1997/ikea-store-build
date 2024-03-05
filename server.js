@@ -21,7 +21,7 @@ import connectDB from "./db/connect.js";
 import authRouter from "./routes/authRoutes.js";
 import prodRouter from "./routes/ProductsRoutes.js";
 import favRouter from './routes/FavRoutes.js'
-
+import itemsRouter from './routes/ItemsRoute.js'
 //middleware
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
@@ -45,6 +45,7 @@ app.use(mongoSanitize()); // prevents mongoDB operator injection
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/prod", authenticateUser, prodRouter);
 app.use("/api/v1/fav", authenticateUser, favRouter);
+app.use("/api/v1/prod/find", authenticateUser, itemsRouter);
 
 // only when ready to deploy
 app.get("*", function (request, response) {

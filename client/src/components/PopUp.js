@@ -13,17 +13,17 @@ const PopUp = () => {
   if (showInfo) {
     bodyElement[0].style.overflowY = "hidden";
   }
-  console.log(bodyElement[0].style.overflowY);
+  // console.log(bodyElement[0].style.overflowY);
 
   const handleClose = () => {
     const exitButton = document.querySelector(".cross-container");
     exitButton.parentElement.style.display = "none";
     toggleInfoPopUp();
     bodyElement[0].style.overflowY = "visible";
-    console.log(bodyElement[0].style.overflowY);
+    // console.log(bodyElement[0].style.overflowY);
   };
 
-  console.log(showInfo);
+  // console.log(showInfo);
 
   return (
     <Wrapper>

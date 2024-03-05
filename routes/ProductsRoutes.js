@@ -2,10 +2,10 @@ import express from 'express'
 const router = express.Router()
 
 import {
-    sendCartItems, updateCartItems, getCartItems, emptyCartItems
+    sendCartItems, updateCartItems, getCartItems, emptyCartItems, 
 } from '../controllers/prodController.js'
-
+// router.route('/find').get(getSearchedItems)
 router.route('/').post(sendCartItems).get(getCartItems).delete(emptyCartItems)
-router.route('/').patch(updateCartItems)
+router.route('/').patch(updateCartItems)                                                                                        
 
 export default router; 

@@ -40,7 +40,10 @@ import {
 
   UPDATE_FAVITEMS_BEGIN, 
   UPDATE_FAVITEMS_SUCCESS, 
-  UPDATE_FAVITEMS_ERROR, 
+  UPDATE_FAVITEMS_ERROR,
+
+  GET_SEARCHED_BEGIN,
+  GET_SEARCHED_SUCCESS, 
   
 
   // CREATE_JOB_BEGIN,
@@ -55,7 +58,7 @@ import {
   // EDIT_JOB_ERROR,
   // SHOW_STATS_SUCCESS,
   // SHOW_STATS_BEGIN,
-  // CLEAR_FILTERS,
+  CLEAR_FILTERS,
 } from "./actions";
 
 import { initialState } from "./appContext";
@@ -223,6 +226,31 @@ const reducer = (state, action) => {
       found: false,
     };
   }
+  //--------------SEARCH-------------------
+  if (action.type === GET_SEARCHED_BEGIN) {
+    return { ...state, isLoading: true, showAlert: false };
+  }
+  if (action.type === GET_SEARCHED_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      prods: action.payload.prods,
+    };
+  }
+
+  if (action.type === CLEAR_FILTERS) {
+    return {
+      ...state,
+      search: "",
+    };
+  }
+
+  if (action.type === HANDLE_CHANGE) {
+    return { ...state, [action.payload.name]: action.payload.value };
+  }
+
+
+//--------------------------
   if (action.type == DELETE_CARTITEMS_BEGIN) {
     return { ...state, isLoading: true };
   }

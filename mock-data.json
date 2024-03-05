@@ -1,0 +1,78 @@
+[
+  {
+    "id": "0",
+    "text": "GURLI",
+    "items": {
+      "text": "GURLI",
+      "type": "Pillow",
+      "size": "50x50 cm (20x20\")",
+      "rating": "4",
+      "reviews": "2657",
+      "options": "2",
+      "amount": "1",
+      "img": "/images/yellow-pillow.jpg",
+      "price": "3",
+      "desc": "Subdued colours, round shapes and beautiful grooves – GRADVIS vase gives your home a slightly softer and warmer feel. Enhance your favourite flowers or just let it stand beautifully on its own.",
+      "articleNum": "705.451.92",
+      "availability": "'available for Home delivery'",
+      "optionSelected": "0"
+    }
+  },
+  {
+    "id": "1",
+    "text": "GRADVIS",
+    "items": {
+      "text": "GRADVIS",
+      "type": "Vase",
+      "size": "'21 cm (8 1/4 \")'",
+      "rating": "5",
+      "reviews": "40",
+      "options": "2",
+      "amount": "'1'",
+      "img": "/images/vase.jpg",
+      "price": "3",
+      "desc": "Subdued colours, round shapes and beautiful grooves – GRADVIS vase gives your home a slightly softer and warmer feel. Enhance your favourite flowers or just let it stand beautifully on its own.",
+      "articleNum": "705.451.92",
+      "availability": " 'available for Home delivery'",
+      "optionSelected": "0"
+    }
+  },
+  {
+    "id": 2,
+    "text": "HALVTOM",
+    "items": {
+      "text": "HALVTOM",
+      "type": "Bottle with pour spout",
+      "size": "'19 cm (7 1/2 \")'",
+      "rating": "8",
+      "reviews": "10",
+      "options": "1",
+      "amount": "'1'",
+      "img": "/images/bottle.jpg",
+      "price": "4",
+      "desc": "HALVTOM jars for spices and oil/vinegar create a trendy restaurant feel at home. The sculptural shape and the brown glass mean that you’ll happily have them visible by the stovetop and on the dining table.",
+      "articleNum": "005.234.62",
+      "availability": " 'available for Home delivery'",
+      "optionSelected": "0"
+    }
+  },
+  {
+    "id": 3,
+    "text": "KLIPPAN",
+    "items": {
+      "text": "KLIPPAN",
+      "type": "Loveseat, Vansbro",
+      "size": "",
+      "rating": "4",
+      "reviews": "152",
+      "options": "2",
+      "amount": " '1'",
+      "img": "/images/sofa-yellow.jpg",
+      "price": "4.00",
+      "desc": "We launched KLIPPAN sofa in the 1980s and it’s still a favorite. It's comfortable, fits almost everywhere and has many covers to choose from. A modern and timeless classic!",
+      "articleNum": "694.965.69",
+      "availability": "'available for Home delivery'",
+      "optionSelected": "0"
+    }
+  }
+]

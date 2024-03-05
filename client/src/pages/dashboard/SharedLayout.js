@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Wrapper from "../../assets/wrappers/SharedLayout";
-import { Navbar, SmallSidebar, BigSidebar, Overlay, RightSidebar } from "../../components";
+import {
+  Navbar,
+  SmallSidebar,
+  BigSidebar,
+  Overlay,
+  RightSidebar,
+} from "../../components";
 import { useAppContext } from "../../context/appContext";
 import { useEffect } from "react";
 
 const SharedLayout = () => {
-  const { showSidebar, toggleSidebar } = useAppContext();
-  
+  const {
+    showSidebar,
+    toggleSidebar,
+    
+  } = useAppContext();
+
+
+
   return (
     <Wrapper>
       <main className="dashboard ">

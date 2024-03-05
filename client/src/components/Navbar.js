@@ -34,12 +34,22 @@ const Navbar = () => {
     calTotalFav,
     getCartItems,
     getFavItems,
+
+    search,
+    getSearchedItems,
+    clearFilters,
+    handleChange, 
+     
   } = useAppContext();
 
   useEffect(() => {
+    // getSearchedItems(); 
     calTotalProd();
     calTotalFav();
+
   });
+
+
   function myclickfun(link) {
     console.log(link.submenu.length); //checking for submenu
     // console.log(link.id1)
@@ -59,6 +69,7 @@ const Navbar = () => {
     }
   }
   const handleNavToCart = () => {
+    getSearchedItems();
     getCartItems();
     navigate("/cart");
   };
@@ -66,6 +77,17 @@ const Navbar = () => {
     getFavItems();
     navigate("/favlist");
   };
+
+  const handleSearch = (e) => {
+     handleChange({ name: e.target.name, value: e.target.value });
+
+  }
+
+  useEffect(() => {
+    // console.log('change')
+    getSearchedItems();
+  }, [search]);
+
 
   return (
     <Wrapper>
@@ -109,9 +131,11 @@ const Navbar = () => {
               <input
                 type="text"
                 name="search"
+                value={search}
+                onChange={handleSearch}
                 className="form-input"
                 placeholder="Find what you need to Bring Home to Life"
-              ></input>
+              />
               <span className="camera-icon">
                 <AiOutlineCamera />
               </span>
@@ -211,10 +235,12 @@ const Navbar = () => {
             <input
               type="text"
               name="search"
+              // value= {l}
+              // onChange={search}
               className="form-input"
               placeholder="Find what you need to Bring Home to Life"
               style={{ width: "88vw" }}
-            ></input>
+            />
             <span className="camera-icon">
               <AiOutlineCamera />
             </span>

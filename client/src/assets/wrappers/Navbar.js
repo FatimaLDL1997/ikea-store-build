@@ -182,6 +182,7 @@ const Wrapper = styled.nav`
     font-size: 1.1rem;
     background-color: #f5f5f5;
   }
+  
   input:focus {
     outline-color: #663fc0;
     outline-width: thin;

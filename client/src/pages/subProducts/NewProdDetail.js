@@ -34,13 +34,11 @@ import products from "../../utils/products";
 SwiperCore.use([Navigation, Pagination, Scrollbar, Mousewheel]);
 
 const NewProdDetail = ({ fav }) => {
-  const [swiperRef, setSwiperRef] = useState(null);
-
   const [option, setOption] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const { productId } = useParams();
-  const product = products.find((product) => product.id == productId);
+  const product = products.find((product) => product.id === productId);
   const {
     id,
     desc,
@@ -51,11 +49,9 @@ const NewProdDetail = ({ fav }) => {
     rating,
     reviews,
     price,
-    img,
     options,
     availability,
     amount,
-    optionSelected,
   } = product;
   const { examples } = options[option];
 
@@ -77,10 +73,10 @@ const NewProdDetail = ({ fav }) => {
     sendFavItems,
     updateFavItems,
     getCartItems,
+    getSearchedItems,
     getFavItems,
     found,
     foundFav,
-    user,
   } = useAppContext();
 
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -145,23 +141,29 @@ const NewProdDetail = ({ fav }) => {
   const dollars = price.slice(0, centsIndex - 1);
   const cents = price.slice(centsIndex - 1, price.length);
 
-  useEffect(() => {
-    // console.log(cartItems.length);
-    if (cartItems.length > 1) {
-      // console.log("changes");
-      getCartItems();
-      // console.log(retrievedItems);
-    }
-    if (favItems.length > 1) {
-      // console.log("changes");
-      getFavItems();
-      // console.log(retrievedItems);
-    }
-  }, [cartItems.length, favItems.length]);
+  useEffect(
+    () => {
+      // console.log(cartItems.length);
+      if (cartItems.length > 1) {
+        // console.log("changes");
+        getCartItems();
+        // console.log(retrievedItems);
+      }
+      if (favItems.length > 1) {
+        // console.log("changes");
+        getFavItems();
+        // console.log(retrievedItems);
+      }
+    },
+    // eslint-disable-next-line
+    [cartItems.length, favItems.length]
+  );
 
   useEffect(() => {
+    getSearchedItems();
     getCartItems();
     getFavItems();
+    // eslint-disable-next-line
   }, []);
 
   const addToFav = () => {
@@ -185,7 +187,7 @@ const NewProdDetail = ({ fav }) => {
       ];
       // check for duplicate items in cartItems
       let foundIndex = favItems.findIndex(
-        (el) => el[0].id == id && el[0].options.color == options[option].color
+        (el) => el[0].id === id && el[0].options.color === options[option].color
       );
 
       //if no same item found:
@@ -231,64 +233,63 @@ const NewProdDetail = ({ fav }) => {
     togglePopUp();
 
     window.scrollTo(0, 0);
-      setCartItems((prevItems) => {
-        let tempItem = [
-          {
-            id: id, //need item
-            text: text,
-            type: type,
-            size: size,
-            price: price,
-            articleNum: articleNum,
-            availability: availability,
-            optionSelected: option,
-            options: options[option], //includes color and img
-            img: options[option].img1,
-            color: options[option].color,
-            amount: itemAmount,
-          },
-        ];
-        // console.log(cartItems)
+    setCartItems((prevItems) => {
+      let tempItem = [
+        {
+          id: id, //need item
+          text: text,
+          type: type,
+          size: size,
+          price: price,
+          articleNum: articleNum,
+          availability: availability,
+          optionSelected: option,
+          options: options[option], //includes color and img
+          img: options[option].img1,
+          color: options[option].color,
+          amount: itemAmount,
+        },
+      ];
+      // console.log(cartItems)
 
-        // check for duplicate items in cartItems
-        let foundIndex = cartItems.findIndex(
-          (el) => el[0].id == id && el[0].options.color == options[option].color
-        );
+      // check for duplicate items in cartItems
+      let foundIndex = cartItems.findIndex(
+        (el) => el[0].id === id && el[0].options.color === options[option].color
+      );
 
-        // console.log(cartItems);
-        // console.log(foundIndex);
+      // console.log(cartItems);
+      // console.log(foundIndex);
 
-        //if no same item found:
-        if (foundIndex < 0 || !found) {
-          prevItems.push(tempItem);
-          makeDelay();
-          //if at least 1 item is found
-          if (cartItems.length > 1) {
-            //add item to the same cartItems list
-            updateCartItems({ cartItems });
-
-            //if no items exist in the array
-          } else {
-            //post a brand new list of cartItems
-            sendCartItems();
-          }
-          togglePopUp();
-          return prevItems;
-
-          // if same item found
-        } else {
-          //modify that particular element in the list
-          prevItems.splice(foundIndex, 1, tempItem);
-          makeDelay();
-
+      //if no same item found:
+      if (foundIndex < 0 || !found) {
+        prevItems.push(tempItem);
+        makeDelay();
+        //if at least 1 item is found
+        if (cartItems.length > 1) {
+          //add item to the same cartItems list
           updateCartItems({ cartItems });
-          addCartItemsToLocalStorage({ cartItems });
 
-          togglePopUp();
-          return prevItems;
+          //if no items exist in the array
+        } else {
+          //post a brand new list of cartItems
+          sendCartItems();
         }
-      });
-  
+        togglePopUp();
+        return prevItems;
+
+        // if same item found
+      } else {
+        //modify that particular element in the list
+        prevItems.splice(foundIndex, 1, tempItem);
+        makeDelay();
+
+        updateCartItems({ cartItems });
+        addCartItemsToLocalStorage({ cartItems });
+
+        togglePopUp();
+        return prevItems;
+      }
+    });
   };
 
   return (
@@ -343,7 +344,6 @@ const NewProdDetail = ({ fav }) => {
               spaceBetween={100}
               slidesPerView={1}
               pagination={{ type: "fraction" }}
-              onSwiper={setSwiperRef}
               centeredSlides={false}
               keyboard={{ enabled: true }}
               direction="horizontal"
@@ -355,7 +355,7 @@ const NewProdDetail = ({ fav }) => {
                 return (
                   <div key={id2} className="slide">
                     <SwiperSlide key={id2}>
-                      <img src={img2} className="detailed-img" />
+                      <img src={img2} alt="" className="detailed-img" />
                     </SwiperSlide>
                   </div>
                 );
@@ -368,6 +368,7 @@ const NewProdDetail = ({ fav }) => {
                     <img
                       src={img1}
                       id={id1}
+                      alt=""
                       onClick={(e) => {
                         changeOption(e);
                       }}
@@ -506,7 +507,11 @@ const NewProdDetail = ({ fav }) => {
                         }}
                         onClick={(e) => addToCart(e)}
                       >
-                        {loading ? <img src={loadingDot} /> : "Add to cart"}
+                        {loading ? (
+                          <img alt="" src={loadingDot} />
+                        ) : (
+                          "Add to cart"
+                        )}
                       </button>
                     </div>
                     <div className="description">{desc}</div>
@@ -567,7 +572,7 @@ const NewProdDetail = ({ fav }) => {
                   return (
                     <div key={id2} className="slide">
                       <div className="image" key={id2}>
-                        <img src={img2} />
+                        <img alt="" src={img2} />
                       </div>
                     </div>
                   );
@@ -649,6 +654,7 @@ const NewProdDetail = ({ fav }) => {
                     return (
                       <button className="option" key={id1}>
                         <img
+                          alt=""
                           src={img1}
                           id={id1}
                           onClick={(e) => {
@@ -723,7 +729,11 @@ const NewProdDetail = ({ fav }) => {
                         }}
                         onClick={(e) => addToCart(e)}
                       >
-                        {loading ? <img src={loadingDot} /> : "Add to cart"}
+                        {loading ? (
+                          <img alt="" src={loadingDot} />
+                        ) : (
+                          "Add to cart"
+                        )}
                       </button>
                     </div>
                   </div>

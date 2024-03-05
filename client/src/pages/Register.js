@@ -16,6 +16,8 @@ import signup from "../assets/images/signup.png";
 import signupLarge from "../assets/images/signupLarge.png";
 import { MdError } from "react-icons/md";
 
+import {toast} from 'react-toastify'
+
 const initialState = {
   firstName: "",
   lastName: "",
@@ -48,6 +50,7 @@ const Register = () => {
     const { firstName, lastName, email, password } = values;
     if (!email || !password || !lastName || !firstName) {
       displayAlert();
+      toast.error("Error! Please check your entries again!")
       return;
     }
     const currentUser = {
@@ -69,6 +72,7 @@ const Register = () => {
       endpoint: "register",
       alertText: "User Created! Redirecting...",
     });
+    toast.success("Registration Successful!")
     // }
   };
 

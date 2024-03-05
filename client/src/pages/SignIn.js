@@ -11,6 +11,8 @@ import { IoIosInformation } from "react-icons/io";
 import { useAppContext } from "../context/appContext";
 import loader from "../assets/images/loader.gif";
 
+import { toast } from "react-toastify";
+
 const initialState = {
   name: "",
   email: "",
@@ -25,7 +27,7 @@ const SignIn = () => {
     getCartItems,
     getFavItems,
     calTotalProd,
-    calTotalFav, 
+    calTotalFav,
     user,
     showAlert,
     displayAlert,
@@ -44,25 +46,24 @@ const SignIn = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     const { email, password } = values;
+    console.log(email)
+    console.log(password)
     if (!email || !password) {
+      toast.error('Please try again with correct values!')
       displayAlert();
+
       return;
     }
     const currentUser = {
       email,
       password,
     };
-    // if (isMember) {
     setupUser({
       currentUser,
       endpoint: "login",
       alertText: "Login Successful! Redirecting...",
     });
-
-    // } else {
-    // setupUser({currentUser, endpoint: 'register', alertText:'User Created! Redirecting...'})
-
-    // }
+    
   };
 
   useEffect(() => {
@@ -70,7 +71,9 @@ const SignIn = () => {
       getCartItems();
       getFavItems();
       calTotalProd();
-      calTotalFav(); 
+      calTotalFav();
+      toast.success("Successfully logged in!");
+
       //if exists --> go to dashboard
       setTimeout(() => {
         navigate("/");

@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect, useContext, useState } from "react";
-
+import { toast } from "react-toastify";
 import {
   TOGGLE_SIDEBAR,
   TOGGLE_RIGHT_SIDEBAR,
@@ -18,21 +18,21 @@ import {
   UPDATE_CARTITEMS_BEGIN,
   UPDATE_CARTITEMS_SUCCESS,
   UPDATE_CARTITEMS_ERROR,
-
-  UPDATE_FAVITEMS_BEGIN, 
-  UPDATE_FAVITEMS_SUCCESS, 
-  UPDATE_FAVITEMS_ERROR, 
-
+  UPDATE_FAVITEMS_BEGIN,
+  UPDATE_FAVITEMS_SUCCESS,
+  UPDATE_FAVITEMS_ERROR,
   GET_CARTITEMS_SUCCESS,
   GET_CARTITEMS_BEGIN,
   GET_CARTITEMS_ERROR,
-
-  GET_FAVITEMS_BEGIN, 
-  GET_FAVITEMS_SUCCESS, 
-  GET_FAVITEMS_ERROR, 
-
+  GET_FAVITEMS_BEGIN,
+  GET_FAVITEMS_SUCCESS,
+  GET_FAVITEMS_ERROR,
   DELETE_CARTITEMS_BEGIN,
   DELETE_FAVITEMS_BEGIN,
+  GET_SEARCHED_BEGIN,
+  GET_SEARCHED_SUCCESS,
+  GET_SEARCHED_ERROR,
+  HANDLE_CHANGE,
 } from "./actions";
 
 import reducer from "./reducers";
@@ -71,13 +71,14 @@ export const initialState = {
   // statusOptions: ["pending", "interview", "declined"],
   // status: "pending",
   // jobs: [],
+  prods: [],
   // totalJobs: 0,
   // numOfPages: 1,
   // page: 1,
   // stats: {},
   // monthlyApplications: [],
 
-  // search: "",
+  search: "",
   // searchStatus: "all",
   // searchType: "all",
   // sort: "latest",
@@ -113,6 +114,8 @@ const AppProvider = ({ children }) => {
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [found, setFound] = useState(false);
   const [foundFav, setFoundFav] = useState(false);
+
+  const [displaySearched, setDisplaySearched] = useState(false);
 
   // const [reloadCount, setReloadCount] = useState(()=>{
   //   const count = localStorage.getItem("reloadCount");
@@ -168,7 +171,6 @@ const AppProvider = ({ children }) => {
 
   const [showPopUp, setShowPopUp] = useState(false);
   const [showInfo, setShowInfo] = useState(true);
-
 
   const togglePopUp = () => {
     setShowPopUp(!showPopUp);
@@ -255,6 +257,8 @@ const AppProvider = ({ children }) => {
       //local storage later
       // console.log('here error');
       console.log(error.response);
+      toast.error("Please try again with correct values!");
+
       dispatch({
         type: SETUP_USER_ERROR,
         payload: { msg: error.response.data.msg },
@@ -292,7 +296,6 @@ const AppProvider = ({ children }) => {
     });
   };
 
-
   const calTotalProd = () => {
     setTotalProducts(0);
     cartItems.forEach((element) => {
@@ -311,8 +314,8 @@ const AppProvider = ({ children }) => {
         return oldTotal;
       });
     });
-  //  console.log('favs total: ')
-  //  console.log(totalFavs)
+    //  console.log('favs total: ')
+    //  console.log(totalFavs)
   };
   //-------------backend functions ---------------
 
@@ -351,8 +354,41 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
+  //for search _____________
+  const getSearchedItems = async () => {
+    console.log("searching items app context");
+
+    let url = "/prod/find";
+    const { search } = state;
+    if (search) {
+      url = `/prod/find?search=${search}`;
+    }
+    console.log(url);
+    dispatch({ type: GET_SEARCHED_BEGIN });
+    try {
+      const { data } = await authFetch(url);
+      console.log(data);
+
+      const { prods} = data;
+      console.log(prods);
+    
+      dispatch({ type: GET_SEARCHED_SUCCESS, payload: { prods } });
+    } catch (error) {
+      console.log("Error searching: " + error.message);
+    }
+    clearAlert();
+  };
+
+  const handleChange = ({ name, value }) => {
+    dispatch({
+      type: HANDLE_CHANGE,
+      payload: { name, value },
+    });
+  };
+
+  //__________________________
   const getCartItems = async () => {
-    // console.log("getting");
+    console.log("getting");
     dispatch({ type: GET_CARTITEMS_BEGIN });
     try {
       const { data } = await authFetch.get("/prod");
@@ -513,39 +549,43 @@ const AppProvider = ({ children }) => {
 
         setShowPopUp,
         showPopUp,
-        showInfo, 
-        setShowInfo, 
+        showInfo,
+        setShowInfo,
 
         togglePopUp,
-        toggleInfoPopUp, 
-        
+        toggleInfoPopUp,
+
         forceUpdate,
         total,
         calTotal,
         totalProducts,
-        
-        totalFavs, 
-        setTotalFavs, 
+
+        totalFavs,
+        setTotalFavs,
 
         calTotalProd,
-        calTotalFav, 
+        calTotalFav,
 
         //backend
         sendCartItems,
         sendFavItems,
 
         getCartItems,
-        getFavItems, 
+        getFavItems,
 
         updateCartItems,
-        updateFavItems, 
+        updateFavItems,
 
         emptyCartItems,
-        emptyFavItems, 
+        emptyFavItems,
 
         found,
-        foundFav, 
-        
+        foundFav,
+        getSearchedItems,
+        handleChange,
+
+        displaySearched, 
+        setDisplaySearched
       }}
     >
       {children}

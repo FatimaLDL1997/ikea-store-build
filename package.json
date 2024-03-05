@@ -38,6 +38,7 @@
     "motion": "^10.16.4",
     "ngrok": "^5.0.0-beta.2",
     "react-icons": "^4.10.1",
+    "react-toastify": "^9.1.2",
     "swiper": "^10.0.4",
     "validator": "^13.7.0",
     "xss-clean": "^0.1.4"
