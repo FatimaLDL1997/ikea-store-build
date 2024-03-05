@@ -340,6 +340,7 @@ const Wrapper = styled.div`
     }
   }
   .product-box {
+    height: 30rem;
     grid-gap: 5rem;
 
     display: grid;

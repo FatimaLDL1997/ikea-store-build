@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import Wrapper from "../../assets/wrappers/Main";
+import Wrapper2 from "../../assets/wrappers/sub-wrappers/AllNewProducts";
+
 import girlsShopping from "../../assets/images/twogirls.jpg";
 import { useAppContext } from "../../context/appContext";
 import { PopUp } from "../../components";
 import products from "../../utils/products";
+import NewProduct from "../subProducts/NewProduct";
 
 const Main = () => {
   const {
@@ -39,14 +42,41 @@ const Main = () => {
         </div>
         {displaySearched ? (
           <>
-            <h1>Showing matches for "{search}"</h1>
-            <div>
-              {products.map((prod) => {
-                return prods.map(({ text }) => {
-                  return prod.text.includes(text) && <h1>{prod.text}</h1>;
-                });
-              })}
-            </div>
+            {prods.length > 0 ? (
+              <h1>
+                Showing matches for
+                <a style={{ fontWeight: "bold" }}> "{search}"</a>
+              </h1>
+            ) : (
+              <h1>
+                There are no results for
+                <a style={{ fontWeight: "bold" }}> "{search}"</a>
+              </h1>
+            )}
+            <h5>
+              {prods.length != 0 ? (
+                <h5>
+                  We found <a  style={{textDecoration:'underline'}}> {prods.length} product{prods.length > 1 ? "s" : ""}</a>
+                </h5>
+              ) : (
+                "Try again using a different spelling or keywords."
+              )}
+            </h5>
+            <Wrapper2>
+              <div className="container-all-products">
+                {products.map((prod) => {
+                  return prods.map((p) => {
+                    return (
+                      prod.text.includes(p.text) && (
+                        <div className="product-box">
+                          <NewProduct key={prod.id} {...prod}></NewProduct>
+                        </div>
+                      )
+                    );
+                  });
+                })}
+              </div>
+            </Wrapper2>
           </>
         ) : (
           <>
