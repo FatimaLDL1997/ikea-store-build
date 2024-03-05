@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Wrapper from "../../assets/wrappers/SharedLayout";
 import {
   Navbar,
@@ -12,13 +12,16 @@ import { useAppContext } from "../../context/appContext";
 import { useEffect } from "react";
 
 const SharedLayout = () => {
-  const {
-    showSidebar,
-    toggleSidebar,
-    
-  } = useAppContext();
+  const { showSidebar, toggleSidebar, search } = useAppContext();
 
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    console.log(search.length);
+    if (search.length > 0) {
+      navigate("/");
+    }
+  }, [search]);
 
   return (
     <Wrapper>

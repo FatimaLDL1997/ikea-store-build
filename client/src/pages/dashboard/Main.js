@@ -38,7 +38,7 @@ const Main = () => {
     <Wrapper>
       <div className="main-content">
         <div className="popup-container">
-          <div className="popup">{<PopUp />}</div>
+          {/* <div className="popup">{<PopUp />}</div> */}
         </div>
         {displaySearched ? (
           <>

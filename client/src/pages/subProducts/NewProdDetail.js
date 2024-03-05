@@ -73,7 +73,6 @@ const NewProdDetail = ({ fav }) => {
     sendFavItems,
     updateFavItems,
     getCartItems,
-    getSearchedItems,
     getFavItems,
     found,
     foundFav,
@@ -160,7 +159,6 @@ const NewProdDetail = ({ fav }) => {
   );
 
   useEffect(() => {
-    getSearchedItems();
     getCartItems();
     getFavItems();
     // eslint-disable-next-line

@@ -17,13 +17,9 @@ import { useAppContext } from "../../context/appContext";
 SwiperCore.use([Navigation, Pagination, Scrollbar]);
 
 const NewProducts = () => {
-  const { windowWidth } = useAppContext();
-
-  useEffect(() => {
-    console.log("window Width: **");
-    console.log(windowWidth);
-  });
+  const { windowWidth, search } = useAppContext();
   const navigate = useNavigate();
+
   return (
     // eslint-disable-line no-eval
 
@@ -49,7 +45,7 @@ const NewProducts = () => {
           // effect={"coverflow"}
           grabCursor={true}
           spaceBetween={50}
-          slidesPerView={windowWidth > 600 ? 2: 1}
+          slidesPerView={windowWidth > 600 ? 2 : 1}
           centeredSlides={false}
           keyboard={true}
           scrollbar={{ draggable: true }}

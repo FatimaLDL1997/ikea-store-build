@@ -25,7 +25,6 @@ const Cart = () => {
     setCartItems,
     addCartItemsToLocalStorage,
     getCartItems,
-    getSearchedItems, 
     emptyCartItems,
     found,
   } = useAppContext();
@@ -38,7 +37,6 @@ const Cart = () => {
     calTotal();
     calTotalProd();
     calTotalFav(); 
-    getSearchedItems();
     getCartItems();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -50,7 +48,6 @@ const Cart = () => {
     //for clearing cart when all items have been deleted
     if (del && cartItems.length > 0) {
       // console.log("GET");
-      getSearchedItems(); 
       getCartItems();
       // console.log("PATCH");
       updateCartItems({ cartItems });

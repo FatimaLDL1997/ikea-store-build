@@ -36,14 +36,12 @@ const Navbar = () => {
     getFavItems,
 
     search,
-    getSearchedItems,
     clearFilters,
     handleChange, 
      
   } = useAppContext();
 
   useEffect(() => {
-    // getSearchedItems(); 
     calTotalProd();
     calTotalFav();
 
@@ -69,7 +67,6 @@ const Navbar = () => {
     }
   }
   const handleNavToCart = () => {
-    getSearchedItems();
     getCartItems();
     navigate("/cart");
   };
@@ -83,11 +80,7 @@ const Navbar = () => {
 
   }
 
-  useEffect(() => {
-    // console.log('change')
-    getSearchedItems();
-  }, [search]);
-
+ 
 
   return (
     <Wrapper>
