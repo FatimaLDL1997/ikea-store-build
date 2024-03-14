@@ -1,9 +1,17 @@
 import React, { useEffect } from "react";
 import Wrapper from "../../assets/wrappers/sub-wrappers/NewProducts";
 
-import { Navigation, Scrollbar, Pagination } from "swiper/modules";
 import SwiperCore from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+
+import {
+  Navigation,
+  Scrollbar,
+  Pagination,
+  Keyboard,
+  Mousewheel,
+} from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -14,7 +22,8 @@ import NewProduct from "./NewProduct";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/appContext";
 
-SwiperCore.use([Navigation, Pagination, Scrollbar]);
+SwiperCore.use([Navigation, Pagination, Scrollbar, Mousewheel]);
+
 
 const NewProducts = () => {
   const { windowWidth, search } = useAppContext();
@@ -42,13 +51,20 @@ const NewProducts = () => {
       <div className="product-box">
         <Swiper
           className="swiper-slider-container"
+          modules={[Keyboard, Scrollbar, Mousewheel, Pagination]}
           // effect={"coverflow"}
           grabCursor={true}
           spaceBetween={50}
           slidesPerView={windowWidth > 600 ? 2 : 1}
           centeredSlides={false}
+          loop={false}
           keyboard={true}
-          scrollbar={{ draggable: true }}
+          scrollbar={{ draggable: true,snapOnRelease:true}}          
+          
+          // pagination={{ type: "fraction" }}
+          direction="horizontal"
+          mousewhel={{ forceToAxis: true}}
+
         >
           {products.slice(0, 5).map((product) => {
             return (

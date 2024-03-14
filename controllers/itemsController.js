@@ -32,15 +32,6 @@ const getSearchedItems = async (req, res) => {
     );
   }
 
-  // if (search) {
-  //   queryObject.cartItems = { $regex: search, $options: "i" };
-  // }
-  // let result = Prod.find({ queryObject });
-  // console.log(queryObject);
-
-  // // console.log(result)
-
-  // const prods = await result;
   res.status(StatusCodes.OK).json({ prods });
 };
 

@@ -43,9 +43,9 @@ app.use(xss()); // sanitize input
 app.use(mongoSanitize()); // prevents mongoDB operator injection
 
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/find", itemsRouter);
 app.use("/api/v1/prod", authenticateUser, prodRouter);
 app.use("/api/v1/fav", authenticateUser, favRouter);
-app.use("/api/v1/prod/find", authenticateUser, itemsRouter);
 
 // only when ready to deploy
 app.get("*", function (request, response) {

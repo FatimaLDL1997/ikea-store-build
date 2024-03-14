@@ -24,40 +24,6 @@ const getCartItems = async (req, res) => {
   res.status(StatusCodes.OK).json({ retrievedItems });
 };
 
-// const getSearchedItems = async (req, res) => {
-//   console.log("SEARCH function.............");
-
-//   console.log(req.query);
-//   const { search } = req.query;
-//   const queryObject = {
-//     createdBy: req.user.userId,
-//   };
-//   console.log(queryObject);
-//   if (search) {
-//     queryObject.cartItems = { $regex: search, $options: "i" };
-//   }
-//   console.log(queryObject);
-
-//   const prods = await Prod.find(queryObject); 
-//   if(prods){
-//     console.log(prods)
-//   }
-//   else {
-//     throw new NotFoundError(`No items posted yetttttttt with id ${req.user.userId}`);
-//   }
-
-//   // if (search) {
-//   //   queryObject.cartItems = { $regex: search, $options: "i" };
-//   // }
-//   // let result = Prod.find({ queryObject });
-//   // console.log(queryObject);
-
-//   // // console.log(result)
-
-//   // const prods = await result;
-//   res.status(StatusCodes.OK).json({ prods });
-// };
-
 const sendCartItems = async (req, res) => {
   req.body.createdBy = req.user.userId;
 

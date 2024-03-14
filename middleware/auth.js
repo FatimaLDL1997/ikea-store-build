@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
 import { UnAuthenticatedError } from "../errors/index.js";
-import {toast} from 'react-toastify'
 
 const auth = async (req, res, next) => {
     // check header

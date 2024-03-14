@@ -358,10 +358,10 @@ const AppProvider = ({ children }) => {
   const getSearchedItems = async () => {
     console.log("searching items app context");
 
-    let url = "/prod/find";
+    let url = "/find";
     const { search } = state;
     if (search) {
-      url = `/prod/find?search=${search}`;
+      url = `/find?search=${search}`;
     }
     console.log(url);
     dispatch({ type: GET_SEARCHED_BEGIN });
