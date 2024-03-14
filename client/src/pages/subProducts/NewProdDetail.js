@@ -38,7 +38,8 @@ const NewProdDetail = ({ fav }) => {
   const [loading, setLoading] = useState(false);
 
   const { productId } = useParams();
-  const product = products.find((product) => product.id === productId);
+  const product = products.find((product) => product.id == productId);
+  console.log(products)
   const {
     id,
     desc,
