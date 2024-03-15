@@ -37,16 +37,13 @@ const Navbar = () => {
 
     search,
     clearFilters,
-    handleChange, 
-     
+    handleChange,
   } = useAppContext();
 
   useEffect(() => {
     calTotalProd();
     calTotalFav();
-
   });
-
 
   function myclickfun(link) {
     console.log(link.submenu.length); //checking for submenu
@@ -67,20 +64,21 @@ const Navbar = () => {
     }
   }
   const handleNavToCart = () => {
-    getCartItems();
+    if (user != null) {
+      getCartItems();
+    }
     navigate("/cart");
   };
   const handleNavToFav = () => {
-    getFavItems();
+    if (user != null) {
+      getFavItems();
+    }
     navigate("/favlist");
   };
 
   const handleSearch = (e) => {
-     handleChange({ name: e.target.name, value: e.target.value });
-
-  }
-
- 
+    handleChange({ name: e.target.name, value: e.target.value });
+  };
 
   return (
     <Wrapper>
@@ -267,7 +265,7 @@ const Navbar = () => {
             <div className="loc-store">
               <div className="delivery">
                 <FiTruck />
-                <h1>M4X 1K3</h1>
+                <h1>M4X 2X2</h1>
               </div>
               <div className="mystore">
                 <TbBuildingStore />
@@ -280,7 +278,7 @@ const Navbar = () => {
           <div className="loc-store-small">
             <div className="delivery">
               <FiTruck />
-              <h1>M4X 1K3</h1>
+              <h1>M4X 2X2</h1>
             </div>
             <div className="mystore">
               <TbBuildingStore />

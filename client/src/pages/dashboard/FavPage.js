@@ -10,6 +10,7 @@ import { MdAddShoppingCart, MdRemoveCircle } from "react-icons/md";
 
 const FavPage = () => {
   const {
+    user,
     foundFav,
     sendFavItems,
     getFavItems,
@@ -17,7 +18,7 @@ const FavPage = () => {
     setFavItems,
     addFavItemsToLocalStorage,
     favItems,
-    calTotalFav, 
+    calTotalFav,
     emptyFavItems,
   } = useAppContext();
   const navigate = useNavigate();
@@ -25,16 +26,18 @@ const FavPage = () => {
   const [del, setDel] = useState(false);
 
   useEffect(() => {
-    getFavItems();
-    if (favItems.length == 0) {
+    if (user != null) {
       getFavItems();
-      sendFavItems();
+      if (favItems.length == 0) {
+        getFavItems();
+        sendFavItems();
+      }
+      if (favItems.length > 0) {
+        getFavItems();
+        updateFavItems({ favItems });
+      }
+      console.log(favItems);
     }
-    if (favItems.length > 0) {
-      getFavItems();
-      updateFavItems({ favItems });
-    }
-    console.log(favItems);
 
     //remove add to fav icon from each item since this the fav list its self
     // const fav = document.getElementsByClassName("add-to-fav");
@@ -87,7 +90,6 @@ const FavPage = () => {
       // calTotal();
       calTotalFav();
 
-
       return prevItems;
     });
     setDel(true);
@@ -96,16 +98,17 @@ const FavPage = () => {
   return (
     <Wrapper>
       <div className="title">Shopping List</div>
-      {favItems.length > 0 || foundFav ? (
+      {foundFav && favItems.length > 0 ? (
         <div className="product-box">
           {favItems.map((item, index) => {
             return (
-              <div
-                key={index}
-                className="product-item-container"
-                // onClick={() => navigate(`/new-product-details/${item[0].id}`)}
-              >
-                <img src={item[0].img} className="img" alt="img" />
+              <div key={index} className="product-item-container">
+                <img
+                  src={item[0].img}
+                  className="img"
+                  alt="img"
+                  onClick={() => navigate(`/new-product-details/${item[0].id}`)}
+                />
                 <div className="product-item">
                   <div className="name">{item[0].text}</div>
                   <div className="type-size">
@@ -123,7 +126,11 @@ const FavPage = () => {
 
                   <div className="add-container">
                     <div className="add-to-cart">
-                      <MdAddShoppingCart />
+                      <MdAddShoppingCart
+                        onClick={() =>
+                          navigate(`/new-product-details/${item[0].id}`)
+                        }
+                      />
                     </div>
                     {/* <div className="add-to-fav">
                     <AiOutlineHeart />

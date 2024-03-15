@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Wrapper from "../../assets/wrappers/Cart";
+import { FaChevronDown } from "react-icons/fa";
 import { FiTruck } from "react-icons/fi";
 import { TbBuildingStore } from "react-icons/tb";
 import { SlOptions } from "react-icons/sl";
@@ -7,6 +8,8 @@ import { PiDotOutlineFill } from "react-icons/pi";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { useAppContext } from "../../context/appContext";
 import { useNavigate } from "react-router-dom";
+
+import ikeaBag from "../../assets/images/ikea-bag.png";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -18,7 +21,7 @@ const Cart = () => {
   const {
     calTotal,
     calTotalProd,
-    calTotalFav, 
+    calTotalFav,
     updateCartItems,
     total,
     cartItems,
@@ -27,6 +30,7 @@ const Cart = () => {
     getCartItems,
     emptyCartItems,
     found,
+    user,
   } = useAppContext();
   // let count = 0;
 
@@ -36,13 +40,12 @@ const Cart = () => {
   useEffect(() => {
     calTotal();
     calTotalProd();
-    calTotalFav(); 
-    getCartItems();
+    calTotalFav();
+    if (user != null) {
+      getCartItems();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-
-
 
   useEffect(() => {
     //for clearing cart when all items have been deleted
@@ -61,7 +64,6 @@ const Cart = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartItems.length]);
-
 
   const handleMouseEnter = () => {
     setHover(true);
@@ -86,12 +88,10 @@ const Cart = () => {
 
       calTotal();
       calTotalProd();
-      
 
       return prevItems;
     });
     setDel(true);
-
   };
 
   const increment = (e) => {
@@ -118,13 +118,13 @@ const Cart = () => {
     }
   };
 
-  const handleCheckout = ()=>{
-    console.log('checking out ...')
-    navigate()
-  }
+  const handleCheckout = () => {
+    console.log("checking out ...");
+    navigate();
+  };
   return (
     <Wrapper>
-      {cartItems.length > 0 || found ? (
+      {found && cartItems.length > 0 ? (
         <>
           <div className="left-side">
             <div className="top-row">
@@ -161,7 +161,11 @@ const Cart = () => {
                   >
                     <div className="left">
                       <div className="img-container">
-                        <img className="img" alt={item[0].text} src={item[0].img} />
+                        <img
+                          className="img"
+                          alt={item[0].text}
+                          src={item[0].img}
+                        />
                         <div className="article-container">
                           {item[0].articleNum}
                         </div>
@@ -234,16 +238,54 @@ const Cart = () => {
               <h4>Subtotal</h4>
               <h2>${total.toFixed(2)}</h2>
             </div>
-            <button className="continue-to-checkout" onClick={()=>handleCheckout()}>
+            <button
+              className="continue-to-checkout"
+              onClick={() => handleCheckout()}
+            >
               Continue to checkout
             </button>
           </div>
         </>
       ) : (
         <div
-          style={{ fontSize: "36px", fontWeight: "700", lineHeight: "48px" }}
+          className="container-empty"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
         >
-          Your cart is empty
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              fontSize: "36px",
+              fontWeight: "700",
+              lineHeight: "48px",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <img src={ikeaBag}></img>
+            <h1 style={{ fontSize: "50px", fontWeight: "bolder" }}>
+              Your shopping bag is empty
+            </h1>
+            <h4 style={{ fontSize: "2rem" }}>
+              When you add products to your shopping bag, they will appear here.
+            </h4>
+            <h5 style={{ paddingTop: "5rem", fontSize: "2rem" }}>
+              Start exploring
+            </h5>
+            <h5 style={{ fontSize: "2rem" }}>
+              {" "}
+              <FaChevronDown />
+            </h5>
+            <button
+              className="see-all-btn"
+              onClick={() => navigate("/all-new-products")}
+            >
+              Browse all products
+            </button>
+          </div>
         </div>
       )}
     </Wrapper>

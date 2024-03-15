@@ -257,7 +257,6 @@ const AppProvider = ({ children }) => {
       //local storage later
       // console.log('here error');
       console.log(error.response);
-      toast.error("Please try again with correct values!");
 
       dispatch({
         type: SETUP_USER_ERROR,
@@ -317,6 +316,7 @@ const AppProvider = ({ children }) => {
     //  console.log('favs total: ')
     //  console.log(totalFavs)
   };
+  
   //-------------backend functions ---------------
 
   const sendCartItems = async () => {
@@ -369,9 +369,9 @@ const AppProvider = ({ children }) => {
       const { data } = await authFetch(url);
       console.log(data);
 
-      const { prods} = data;
+      const { prods } = data;
       console.log(prods);
-    
+
       dispatch({ type: GET_SEARCHED_SUCCESS, payload: { prods } });
     } catch (error) {
       console.log("Error searching: " + error.message);
@@ -441,28 +441,32 @@ const AppProvider = ({ children }) => {
       dispatch({ type: SEND_FAVITEMS_SUCCESS });
     } catch (error) {
       if (error.response.status === 401) return;
+
       dispatch({
         type: SEND_FAVITEMS_ERROR,
         payload: { msg: error.response.data.msg },
       });
     }
+    clearAlert();
   };
 
   const getFavItems = async () => {
     console.log("getting favs");
     dispatch({ type: GET_FAVITEMS_BEGIN });
     try {
-      const { data } = await authFetch.get("/fav");
-      console.log(data.retrievedItems);
+      if (user != null) {
+        const { data } = await authFetch.get("/fav");
+        console.log(data.retrievedItems);
 
-      if (data.retrievedItems) {
-        console.log("favs gotten");
-        const { retrievedItems } = data;
-        const { favItems } = retrievedItems;
+        if (data.retrievedItems) {
+          console.log("favs gotten");
+          const { retrievedItems } = data;
+          const { favItems } = retrievedItems;
 
-        setFoundFav(true);
-        addFavItemsToLocalStorage({ favItems });
-        dispatch({ type: GET_FAVITEMS_SUCCESS, payload: { favItems } });
+          setFoundFav(true);
+          addFavItemsToLocalStorage({ favItems });
+          dispatch({ type: GET_FAVITEMS_SUCCESS, payload: { favItems } });
+        }
       }
       //  else {
       //   setFound(false);
@@ -483,11 +487,13 @@ const AppProvider = ({ children }) => {
   const updateFavItems = async (currentFavItems) => {
     dispatch({ type: UPDATE_FAVITEMS_BEGIN });
     try {
-      await authFetch.patch(`/fav`, currentFavItems);
-      dispatch({
-        type: UPDATE_FAVITEMS_SUCCESS,
-        payload: { currentFavItems, token, user },
-      });
+      if (user != null) {
+        await authFetch.patch(`/fav`, currentFavItems);
+        dispatch({
+          type: UPDATE_FAVITEMS_SUCCESS,
+          payload: { currentFavItems, token, user },
+        });
+      }
     } catch (error) {
       if (error.response.status === 401) return;
       dispatch({
@@ -584,8 +590,8 @@ const AppProvider = ({ children }) => {
         getSearchedItems,
         handleChange,
 
-        displaySearched, 
-        setDisplaySearched
+        displaySearched,
+        setDisplaySearched,
       }}
     >
       {children}

@@ -8,21 +8,22 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const RightSidebar = () => {
-  const { showRightSidebar, toggleRightSidebar, user, logoutUser } =
+  const {  showRightSidebar, toggleRightSidebar, user, logoutUser } =
     useAppContext();
 
+  const navigate = useNavigate();
+
   const handleSignIn = () => {
-    Navigate("/login");
+    navigate("/login");
     toggleRightSidebar();
   };
 
   const handleSignOut = () => {
-    Navigate("/");
+    navigate("/");
     toggleRightSidebar();
     logoutUser();
     window.location.reload();
   };
-  const Navigate = useNavigate();
   // console.log(showRightSidebar);
 
   // console.log(user);
@@ -58,7 +59,7 @@ const RightSidebar = () => {
             </div>
             <div className="second-row">
               {user ? <h2>Your IKEA Family</h2> : <h2>Join IKEA Family</h2>}
-              <button>
+              <button onClick={() => navigate("/register")}>
                 <AiOutlineRight />
               </button>
             </div>

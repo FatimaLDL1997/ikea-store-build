@@ -12,7 +12,6 @@ import moment from "moment/moment.js";
 import checkPermissions from "../utils/checkPermissions.js";
 
 const sendFavItems = async (req, res) => {
-  // console.log(req.body);
 
   req.body.createdBy = req.user.userId;
 
@@ -25,13 +24,9 @@ const updateFavItems = async (req, res) => {
   
   const fav = await Fav.findOne({createdBy:req.user.userId});
 
-  // const prod = await Prod.findOne({ prodId: req.user.userId });
-
   if (!fav) {
     throw new NotFoundError(`No product with id ${req.user.userId}`);
   }
-  //check permissions
-  // checkPermissions(req.user, prod.createdBy);
   const updatedFavItems = await Fav.findOneAndUpdate(
     { createdBy: req.user.userId },
     req.body,

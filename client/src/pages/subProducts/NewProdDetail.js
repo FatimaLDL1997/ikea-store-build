@@ -31,6 +31,8 @@ import "swiper/css/scrollbar";
 import AddedToCartSideMenu from "../../pages/AddedToCartSideMenu.js";
 import { useAppContext } from "../../context/appContext";
 import products from "../../utils/products";
+import { toast } from "react-toastify";
+
 SwiperCore.use([Navigation, Pagination, Scrollbar, Mousewheel]);
 
 const NewProdDetail = ({ fav }) => {
@@ -39,7 +41,7 @@ const NewProdDetail = ({ fav }) => {
 
   const { productId } = useParams();
   const product = products.find((product) => product.id == productId);
-  console.log(products)
+  console.log(products);
   const {
     id,
     desc,
@@ -61,6 +63,7 @@ const NewProdDetail = ({ fav }) => {
   const minus = document.getElementsByClassName("minus");
   const [hover, setHover] = useState(false);
   const {
+    user,
     windowWidth,
     cartItems,
     favItems,
@@ -160,135 +163,147 @@ const NewProdDetail = ({ fav }) => {
   );
 
   useEffect(() => {
-    getCartItems();
-    getFavItems();
+    if (user != null) {
+      getCartItems();
+      getFavItems();
+    }
     // eslint-disable-next-line
   }, []);
 
   const addToFav = () => {
     console.log("addtofav");
-    setFavItems((prevItems) => {
-      let tempItem = [
-        {
-          id: id, //need item
-          text: text,
-          type: type,
-          size: size,
-          price: price,
-          articleNum: articleNum,
-          availability: availability,
-          optionSelected: option,
-          options: options[option], //includes color and img
-          img: options[option].img1,
-          color: options[option].color,
-          amount: itemAmount,
-        },
-      ];
-      // check for duplicate items in cartItems
-      let foundIndex = favItems.findIndex(
-        (el) => el[0].id === id && el[0].options.color === options[option].color
-      );
+    if (user != null) {
+      setFavItems((prevItems) => {
+        let tempItem = [
+          {
+            id: id, //need item
+            text: text,
+            type: type,
+            size: size,
+            price: price,
+            articleNum: articleNum,
+            availability: availability,
+            optionSelected: option,
+            options: options[option], //includes color and img
+            img: options[option].img1,
+            color: options[option].color,
+            amount: itemAmount,
+          },
+        ];
+        // check for duplicate items in cartItems
+        let foundIndex = favItems.findIndex(
+          (el) =>
+            el[0].id === id && el[0].options.color === options[option].color
+        );
 
-      //if no same item found:
-      if (foundIndex < 0 || !foundFav) {
-        setFoundFavItem(false);
-        prevItems.push(tempItem);
-        makeDelay();
-        //if at least 1 item is found
-        if (favItems.length > 1) {
-          //add item to the same cartItems list
-          updateFavItems({ favItems });
-          //if no items exist in the array
+        //if no same item found:
+        if (foundIndex < 0 || !foundFav) {
+          setFoundFavItem(false);
+          prevItems.push(tempItem);
+          makeDelay();
+          //if at least 1 item is found
+          if (favItems.length > 1) {
+            //add item to the same cartItems list
+            updateFavItems({ favItems });
+            //if no items exist in the array
+          } else {
+            //post a brand new list of cartItems
+            sendFavItems();
+          }
+          // togglePopUp();
+          return prevItems;
+
+          // if same item found
         } else {
-          //post a brand new list of cartItems
-          sendFavItems();
+          console.log("found fav item");
+          setFoundFavItem(true);
+          timeNotification();
+          //modify that particular element in the list
+          prevItems.splice(foundIndex, 1, tempItem);
+          makeDelay();
+
+          updateFavItems({ favItems });
+          addFavItemsToLocalStorage({ favItems });
+
+          // togglePopUp();
+          return prevItems;
         }
-        // togglePopUp();
-        return prevItems;
 
-        // if same item found
-      } else {
-        console.log("found fav item");
-        setFoundFavItem(true);
-        timeNotification();
-        //modify that particular element in the list
-        prevItems.splice(foundIndex, 1, tempItem);
-        makeDelay();
+        // prevItems.push(tempItem);
 
-        updateFavItems({ favItems });
-        addFavItemsToLocalStorage({ favItems });
-
-        // togglePopUp();
-        return prevItems;
-      }
-
-      // prevItems.push(tempItem);
-
-      // return prevItems;
-    });
+        // return prevItems;
+      });
+    } else {
+      toast.error("Please Login first to add items to the Fav List");
+    }
   };
   const addToCart = (e) => {
     //adds first item here
-    togglePopUp();
+    if (user != null) {
+      togglePopUp();
 
-    window.scrollTo(0, 0);
-    setCartItems((prevItems) => {
-      let tempItem = [
-        {
-          id: id, //need item
-          text: text,
-          type: type,
-          size: size,
-          price: price,
-          articleNum: articleNum,
-          availability: availability,
-          optionSelected: option,
-          options: options[option], //includes color and img
-          img: options[option].img1,
-          color: options[option].color,
-          amount: itemAmount,
-        },
-      ];
-      // console.log(cartItems)
+      window.scrollTo(0, 0);
+      setCartItems((prevItems) => {
+        let tempItem = [
+          {
+            id: id, //need item
+            text: text,
+            type: type,
+            size: size,
+            price: price,
+            articleNum: articleNum,
+            availability: availability,
+            optionSelected: option,
+            options: options[option], //includes color and img
+            img: options[option].img1,
+            color: options[option].color,
+            amount: itemAmount,
+          },
+        ];
+        // console.log(cartItems)
 
-      // check for duplicate items in cartItems
-      let foundIndex = cartItems.findIndex(
-        (el) => el[0].id === id && el[0].options.color === options[option].color
-      );
+        // check for duplicate items in cartItems
+        let foundIndex = cartItems.findIndex(
+          (el) =>
+            el[0].id === id && el[0].options.color === options[option].color
+        );
 
-      // console.log(cartItems);
-      // console.log(foundIndex);
+        // console.log(cartItems);
+        // console.log(foundIndex);
 
-      //if no same item found:
-      if (foundIndex < 0 || !found) {
-        prevItems.push(tempItem);
-        makeDelay();
-        //if at least 1 item is found
-        if (cartItems.length > 1) {
-          //add item to the same cartItems list
-          updateCartItems({ cartItems });
+        //if no same item found:
+        if (foundIndex < 0 || !found) {
+          prevItems.push(tempItem);
+          makeDelay();
+          //if at least 1 item is found
+          if (cartItems.length > 1) {
+            //add item to the same cartItems list
+            updateCartItems({ cartItems });
 
-          //if no items exist in the array
+            //if no items exist in the array
+          } else {
+            //post a brand new list of cartItems
+            sendCartItems();
+          }
+          togglePopUp();
+          return prevItems;
+
+          // if same item found
         } else {
-          //post a brand new list of cartItems
-          sendCartItems();
+          //modify that particular element in the list
+          prevItems.splice(foundIndex, 1, tempItem);
+          makeDelay();
+
+          updateCartItems({ cartItems });
+          addCartItemsToLocalStorage({ cartItems });
+
+          togglePopUp();
+          return prevItems;
         }
-        togglePopUp();
-        return prevItems;
-
-        // if same item found
-      } else {
-        //modify that particular element in the list
-        prevItems.splice(foundIndex, 1, tempItem);
-        makeDelay();
-
-        updateCartItems({ cartItems });
-        addCartItemsToLocalStorage({ cartItems });
-
-        togglePopUp();
-        return prevItems;
-      }
-    });
+      });
+    } else {
+      toast.error("Please Login first to add Items to Cart!");
+    }
   };
 
   return (

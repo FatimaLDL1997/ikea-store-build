@@ -20,7 +20,6 @@ const Wrapper = styled.div`
   }
 
   .product-item-container {
-    cursor: pointer;
     height: 2rem;
     display: flex;
     flex-direction: column;
@@ -42,6 +41,8 @@ const Wrapper = styled.div`
   .img {
     width: 15rem;
     height: auto;
+    cursor: pointer;
+
   }
   @media (max-width: 500px) {
     .img {

@@ -201,5 +201,20 @@ const Wrapper = styled.div`
       width: 100%;
     }
   }
+
+  .see-all-btn{
+    border-radius:30px;
+    border: 4px solid black;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    background-color: white;
+    font-size: 1.8rem;
+    border-color: black;
+    font-weight: 590;
+    color: black;
+  }
+  .see-all-btn:hover{
+    cursor: pointer;
+    border: 6px solid black;
+  }
 `;
 export default Wrapper;
