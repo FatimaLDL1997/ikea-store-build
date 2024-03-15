@@ -145,8 +145,22 @@ const FavPage = () => {
           })}
         </div>
       ) : (
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          No Items Added Yet!
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <h1 style={{fontSize:'2rem'}}>No Items Added Yet! Click below to explore</h1>
+
+          <button
+            className="see-all-btn"
+            onClick={() => navigate("/all-new-products")}
+          >
+            Browse all products
+          </button>
         </div>
       )}
     </Wrapper>

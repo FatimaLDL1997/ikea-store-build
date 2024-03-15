@@ -5,12 +5,11 @@ const Wrapper = styled.div`
   /* .main-content{
     overflow: visible;
   } */
-  .popup-container{
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-  
 
+  .popup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .popup-text {
     position: relative;
@@ -23,18 +22,17 @@ const Wrapper = styled.div`
     align-items: center;
     padding: 1.5rem;
     overflow-y: scroll;
-    
+
     /* overflow-y: scroll; */
-    
+
     .title {
       margin: 0;
 
       margin-top: 0;
       font-size: 1.5rem;
     }
-    p{
-    font-size: 1rem;
-
+    p {
+      font-size: 1rem;
     }
   }
   .cross-container {
@@ -43,7 +41,6 @@ const Wrapper = styled.div`
     align-items: center;
     width: 100%;
     /* background-color: red; */
-    
   }
   .cross-container svg {
     /* padding: 10px; */
@@ -58,7 +55,6 @@ const Wrapper = styled.div`
     /* right: 50%; */
     /* width: 19%; */
     position: fixed;
-    
   }
   .top-container {
     display: flex;
@@ -83,9 +79,15 @@ const Wrapper = styled.div`
     height: auto;
   }
   .welcome {
-    font-size: 36px;
-    font-weight: 700;
+    font-size: 50px;
+    font-weight: 800;
     font-family: "Roboto", sans-serif;
+  }
+  .second-heading {
+    font-family: "Roboto", sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    padding-top: 4rem;
   }
   .yellow-box h2 {
     font-size: 24px;
@@ -112,6 +114,10 @@ const Wrapper = styled.div`
     width: fit-content;
     padding: 0.7rem 1.5rem 0.7rem 1.5rem;
     border-radius: 30px;
+  }
+  .shop-sale-btn:hover {
+    background-color: #4e5959;
+    cursor: pointer;
   }
 
   @media (max-width: 600px) {

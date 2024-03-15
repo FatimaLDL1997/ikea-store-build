@@ -1,6 +1,20 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  .see-all-btn {
+    border-radius: 30px;
+    border: 4px solid black;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    background-color: white;
+    font-size: 1.8rem;
+    border-color: black;
+    font-weight: 590;
+    color: black;
+  }
+  .see-all-btn:hover {
+    cursor: pointer;
+    border: 6px solid black;
+  }
   .color::first-letter {
     text-transform: uppercase;
   }
@@ -42,7 +56,6 @@ const Wrapper = styled.div`
     width: 15rem;
     height: auto;
     cursor: pointer;
-
   }
   @media (max-width: 500px) {
     .img {
@@ -144,8 +157,7 @@ const Wrapper = styled.div`
   .filter-container .price-btn:hover {
     background-color: lightgray;
     cursor: pointer;
-    color: black 
-
+    color: black;
   }
   /* .filter-container .features-btn,
   .filter-container .type-btn,
@@ -166,9 +178,10 @@ const Wrapper = styled.div`
     }
   }
   @media (max-width: 900px) {
-  .up-arrow, .down-arrow {
-    display: none !important;
-  }
+    .up-arrow,
+    .down-arrow {
+      display: none !important;
+    }
   }
 
   .up-arrow {
@@ -179,7 +192,6 @@ const Wrapper = styled.div`
     display: flex;
     position: relative;
   }
-
 
   .filter-container {
     display: flex;
@@ -249,7 +261,6 @@ const Wrapper = styled.div`
     cursor: pointer;
     border: 1px solid lightgray;
     color: black;
-
   }
   .room-btn {
     border-bottom-right-radius: 5px;
@@ -258,7 +269,6 @@ const Wrapper = styled.div`
     cursor: pointer;
     border: 1px solid lightgray;
     color: black;
-
   }
   .product-btn:hover {
     border: 1px solid darkgray;
@@ -282,7 +292,6 @@ const Wrapper = styled.div`
     background-color: white;
     cursor: pointer;
     color: black;
-
   }
   .room-btn-active {
     border: 1px solid black;
@@ -291,7 +300,6 @@ const Wrapper = styled.div`
     background-color: white;
     cursor: pointer;
     color: black;
-
   }
 
   .sort-cntr {
