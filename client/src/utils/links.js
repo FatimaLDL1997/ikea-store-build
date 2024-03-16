@@ -21,8 +21,8 @@ const links = [
     text: "Rooms",
     path: "rooms",
     submenu: [
-      { id: 1, title: "Room 1", path: "room1" },
-      { id: 2, title: "Room 2", path: "room2" },
+      { id: 1, title: "Room 1", path: "rooms" },
+      { id: 2, title: "Room 2", path: "rooms" },
     ],
   },
   {
