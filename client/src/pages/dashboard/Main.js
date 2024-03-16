@@ -10,6 +10,7 @@ import cards from "../../utils/cards";
 import NewProduct from "../subProducts/NewProduct";
 import { useNavigate } from "react-router-dom";
 
+import { FaArrowCircleRight } from "react-icons/fa";
 import {
   Navigation,
   Scrollbar,
@@ -28,6 +29,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, Mousewheel]);
 
 const Main = () => {
   const {
+    windowWidth,
     showInfo,
     toggleInfoPopUp,
     search,
@@ -39,21 +41,22 @@ const Main = () => {
   } = useAppContext();
 
   const navigate = useNavigate();
+  console.log(cards[0].image);
 
   useEffect(() => {
     getSearchedItems();
   }, [displaySearched]);
 
-  console.log(search.length);
+  // console.log(search.length);
   if (search.length > 0) {
     setDisplaySearched(true);
-    console.log(displaySearched);
+    // console.log(displaySearched);
   } else {
     setDisplaySearched(false);
-    console.log(displaySearched);
+    // console.log(displaySearched);
   }
-  console.log(prods);
-  console.log(products);
+  // console.log(prods);
+  // console.log(products);
   return (
     <Wrapper>
       <div className="main-content">
@@ -139,7 +142,9 @@ const Main = () => {
                 className="swiper-slider-container"
                 grabCursor={true}
                 spaceBetween={25}
-                slidesPerView={3}
+                slidesPerView={
+                  windowWidth > 800 ? 3 : 2 && windowWidth > 400 ? 2 : 1
+                }
                 centeredSlides={false}
                 keyboard={{ enabled: true }}
                 direction="horizontal"
@@ -147,31 +152,54 @@ const Main = () => {
                 scrollbar={{ draggable: true }}
                 modules={[Keyboard, Mousewheel, Pagination]}
               >
-                {cards.map(({ id, img, title, text, color }) => {
+                {cards.map((card) => {
                   return (
-                    <div key={id} className="slide">
-                      <SwiperSlide key={id}>
+                    <div key={card.id} className="slide">
+                      <SwiperSlide key={card.id}>
+                        <img
+                          src={card.image}
+                          style={{
+                            position: "relative",
+                            width: "inherit",
+                            top: "10px",
+                          }}
+                          alt=""
+                          className="image-card"
+                        />
                         <div
                           style={{
-                            backgroundColor: color,
+                            backgroundColor: card.color,
                             padding: "2rem",
                             marginBottom: "2rem",
-                            height: "40rem",
+                            height: windowWidth > 800 ? "30rem" : "35rem" && windowWidth > 400? "40rem" : "20rem",
                           }}
                         >
-                          <img src={img} style={{width:'2rem', height:'2rem'}} alt="" className="image-card" />
-                          <h1 style={{ fontSize: "1.5rem", fontWeight: "600" }}>
-                            {title}
+                          <h1
+                            style={{
+                              fontSize: windowWidth > 800 ? "1.5rem" : "1rem",
+                              fontWeight: "600",
+                            }}
+                          >
+                            {card.title}
                           </h1>
                           <h3
                             style={{
-                              fontSize: "1.2rem",
+                              fontSize: windowWidth > 800 ? "1.2rem" : "1rem",
                               fontWeight: "200",
                               paddingBottom: "2rem",
                             }}
                           >
-                            {text}
+                            {card.text}
                           </h3>
+                          <FaArrowCircleRight
+                            style={{
+                              cursor: "pointer",
+                              position: "absolute",
+                              bottom: "60px",
+                              fontSize: windowWidth > 1000 ? '3rem': '1rem',
+                              fontWeight: "200",
+                            }}
+                          />
                         </div>
                       </SwiperSlide>
                     </div>
