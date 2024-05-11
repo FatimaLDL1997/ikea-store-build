@@ -149,7 +149,7 @@ const AppProvider = ({ children }) => {
     (error) => {
       if (error.response.status === 401) {
         logoutUser();
-        console.log("logging  ......");
+        console.log("logging out ......");
       }
       return Promise.reject(error);
     }
@@ -255,8 +255,8 @@ const AppProvider = ({ children }) => {
       });
     } catch (error) {
       //local storage later
-      // console.log('here error');
-      console.log(error.response);
+      toast.error("Something you entered is wrong. Please try again!");
+      // console.log(error.response);
 
       dispatch({
         type: SETUP_USER_ERROR,
@@ -316,7 +316,7 @@ const AppProvider = ({ children }) => {
     //  console.log('favs total: ')
     //  console.log(totalFavs)
   };
-  
+
   //-------------backend functions ---------------
 
   const sendCartItems = async () => {

@@ -253,6 +253,16 @@ const Wrapper = styled.nav`
     /* border: none; */
     /* border-radius: 30px; */
   }
+  .login-btn button{
+    color: black; 
+    border: none;
+    background-color: transparent;
+
+  }
+  .login-btn button:hover{
+    cursor: pointer;
+
+  }
   .navbar-logo {
     position: relative;
     left: 2rem;
@@ -495,12 +505,15 @@ const Wrapper = styled.nav`
     .btns-container {
       gap: 1.5rem;
     }
+  
+  }
+  @media (min-width: 1686px)  {
     .totalProductsIcon {
-      left: 8rem !important;
+      left: 13rem !important;
     }
     .totalFavsIcon {
-      left: 4.5rem !important;
-    }
+      left: 10.5rem !important;
+    } 
   }
   
   @media (min-width: 0px) and (max-width: 1700px) {

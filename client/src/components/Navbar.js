@@ -140,9 +140,9 @@ const Navbar = () => {
             >
               <AiOutlineUser onClick={toggleRightSidebar} />
               {windowWidth > 1700 && (
-                <div className="text">
-                  {user ? `Hej ${user.firstName}!` : "Hej! Login or signcup"}
-                </div>
+                <button onClick={toggleRightSidebar}>
+                {user ? `Hej ${user.firstName}!` : "Hej! Login or signup"}
+              </button>
               )}
             </button>
 

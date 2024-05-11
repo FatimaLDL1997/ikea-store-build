@@ -13,8 +13,8 @@ const Rooms = () => {
     >
       <img style={{width:'20rem'}} src={sorryImg} />
       Working on getting this page done. Click{" "}
-      <a href="/newproducts" style={{ cursor: "pointer", color: "blue" }}>here</a> to try the
-      functional parts of this site out for now. Thanks!
+      <a href="/newproducts" style={{ cursor: "pointer", color: "blue" }}>here</a> to try out the
+      functional parts of this site for now. Thanks!
     </div>
   );
 };

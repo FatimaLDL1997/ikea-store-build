@@ -63,14 +63,7 @@ const RightSidebar = () => {
                 <AiOutlineRight />
               </button>
             </div>
-            {!user && (
-              <div className="third-row">
-                <h2>Join IKEA Bussiness Network</h2>
-                <button>
-                  <AiOutlineRight />
-                </button>
-              </div>
-            )}
+          
           </div>
         </div>
       </div>

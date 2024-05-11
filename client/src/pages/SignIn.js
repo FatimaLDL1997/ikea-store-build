@@ -46,8 +46,6 @@ const SignIn = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     const { email, password } = values;
-    console.log(email)
-    console.log(password)
     if (!email || !password) {
       toast.error('Please try again with correct values!')
       displayAlert();
@@ -80,6 +78,7 @@ const SignIn = () => {
         window.location.reload();
       }, 3000);
     }
+   
   }, [user, navigate]);
 
   return (

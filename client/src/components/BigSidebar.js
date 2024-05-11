@@ -9,6 +9,7 @@ const BigSidebar = () => {
   const {
     showSidebar,
     toggleSidebar,
+    toggleRightSidebar,
     user,
     windowHeight,
     windowWidth,
@@ -33,11 +34,13 @@ const BigSidebar = () => {
           </header>
 
           <div className="container">
-            {windowWidth <1425 && (
-              <button className="login-btn"  > 
+            {windowWidth < 1425 && (
+              <button className="login-btn">
                 <AiOutlineUser />
                 <div className="text">
-                  {user ? `Hej ${user.firstName}!` : "Hej! Login or signcup"}
+                  <button onClick={toggleRightSidebar}>
+                    {user ? `Hej ${user.firstName}!` : "Hej! Login or signup"}
+                  </button>
                 </div>
               </button>
             )}

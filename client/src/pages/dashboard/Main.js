@@ -143,7 +143,7 @@ const Main = () => {
                 grabCursor={true}
                 spaceBetween={25}
                 slidesPerView={
-                  windowWidth > 800 ? 3 : 2 && windowWidth > 400 ? 2 : 1
+                  windowWidth > 700 ? 3 : 1
                 }
                 centeredSlides={false}
                 keyboard={{ enabled: true }}
@@ -154,8 +154,8 @@ const Main = () => {
               >
                 {cards.map((card) => {
                   return (
-                    <div key={card.id} className="slide">
-                      <SwiperSlide key={card.id}>
+                    <div key={card.id} className="slide" >
+                      <SwiperSlide key={card.id} >
                         <img
                           src={card.image}
                           style={{
@@ -171,7 +171,7 @@ const Main = () => {
                             backgroundColor: card.color,
                             padding: "2rem",
                             marginBottom: "2rem",
-                            height: windowWidth > 800 ? "30rem" : "35rem" && windowWidth > 400? "40rem" : "20rem",
+                            height: windowWidth > 700 ? "30rem" : "20rem" ,
                           }}
                         >
                           <h1

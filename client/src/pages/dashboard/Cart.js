@@ -10,6 +10,7 @@ import { useAppContext } from "../../context/appContext";
 import { useNavigate } from "react-router-dom";
 
 import ikeaBag from "../../assets/images/ikea-bag.png";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -120,7 +121,10 @@ const Cart = () => {
 
   const handleCheckout = () => {
     console.log("checking out ...");
-    navigate();
+
+    toast.error(
+      "Sorry! This part of the site is not functional as it is not meant to actually sell any products"
+    );
   };
   return (
     <Wrapper>
@@ -266,10 +270,19 @@ const Cart = () => {
             }}
           >
             <img src={ikeaBag}></img>
-            <h1 style={{ fontSize: "50px", fontWeight: "bolder" }}>
+            <h1
+              style={{
+                fontSize: "50px",
+                fontWeight: "bolder",
+                padding: "2rem",
+                textAlign: "center",
+              }}
+            >
               Your shopping bag is empty
             </h1>
-            <h4 style={{ fontSize: "2rem" }}>
+            <h4
+              style={{ fontSize: "2rem", padding: "2rem", textAlign: "center" }}
+            >
               When you add products to your shopping bag, they will appear here.
             </h4>
             <h5 style={{ paddingTop: "5rem", fontSize: "2rem" }}>

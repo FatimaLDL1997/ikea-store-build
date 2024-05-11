@@ -1,12 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Wrapper from "../../assets/wrappers/sub-wrappers/AllNewProducts";
 
 import products from "../../utils/products";
 import filter from "../../utils/filter";
 import { useAppContext } from "../../context/appContext";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
-import { IoIosOptions } from "react-icons/io";
-import { all } from "axios";
 import NewProduct from "./NewProduct";
 
 import {

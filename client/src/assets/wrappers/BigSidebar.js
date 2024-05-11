@@ -98,9 +98,19 @@ const Wrapper = styled.aside`
     font-size: 1.4rem;
     color:black; 
   }
-  .login-btn .text {
+  .login-btn .text  button{
     padding-left: 12px;
     color: black; 
+    border: none;
+    background-color: transparent;
+
+
+  }
+  
+  .login-btn button:hover {
+    cursor: pointer;
+    
+
   }
   .login-btn:hover {
     /* border: none; */
