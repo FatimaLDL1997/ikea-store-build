@@ -4,6 +4,7 @@ import {
   Deals,
   Products,
   Rooms,
+  NotAvailable, 
   Under10,
   PlanningTools,
   BackToSchool,
@@ -35,6 +36,7 @@ function App() {
           <Route path="main" element={<Main />} />
           <Route path="products" element={<Products />} />
           <Route path="rooms" element={<Rooms />} />
+          <Route path="notavailable" element={<NotAvailable />} />
           <Route path="deals" element={<Deals />} />
           <Route path="under10" element={<Under10 />} />
           <Route path="planningtools" element={<PlanningTools />} />

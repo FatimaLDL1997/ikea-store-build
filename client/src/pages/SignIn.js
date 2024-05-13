@@ -70,7 +70,7 @@ const SignIn = () => {
       getFavItems();
       calTotalProd();
       calTotalFav();
-      toast.success("Successfully logged in!");
+      toast.success("Successfully logged in! Loading...");
 
       //if exists --> go to dashboard
       setTimeout(() => {

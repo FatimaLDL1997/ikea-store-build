@@ -182,7 +182,7 @@ const Wrapper = styled.nav`
     font-size: 1.1rem;
     background-color: #f5f5f5;
   }
-  
+
   input:focus {
     outline-color: #663fc0;
     outline-width: thin;
@@ -237,8 +237,7 @@ const Wrapper = styled.nav`
   }
   .login-btn svg {
     font-size: 1.2rem;
-    color: black; 
-
+    color: black;
   }
   .login-btn .text {
     padding-left: 12px;
@@ -253,15 +252,13 @@ const Wrapper = styled.nav`
     /* border: none; */
     /* border-radius: 30px; */
   }
-  .login-btn button{
-    color: black; 
+  .login-btn button {
+    color: black;
     border: none;
     background-color: transparent;
-
   }
-  .login-btn button:hover{
+  .login-btn button:hover {
     cursor: pointer;
-
   }
   .navbar-logo {
     position: relative;
@@ -416,14 +413,6 @@ const Wrapper = styled.nav`
       right: 2rem;
     }
   }
- /* @media (min-width: 2460px) {
-  .totalProductsIcon {
-      left: 14rem !important;
-    }
-    .totalFavsIcon {
-      left: 12rem !important;
-    }
- } */
   @media (min-width: 1600px) {
     .navbar-logo {
       left: 3rem;
@@ -466,7 +455,7 @@ const Wrapper = styled.nav`
     .logo {
       width: 5rem;
     }
-    
+
     .loc-store-small {
       padding-left: 0rem;
       padding-right: 0rem;
@@ -486,7 +475,7 @@ const Wrapper = styled.nav`
       gap: 0;
     }
   }
-  
+
   @media (min-width: 700px) and (max-width: 800px) {
     .navbar-logo {
       left: 2rem;
@@ -505,17 +494,16 @@ const Wrapper = styled.nav`
     .btns-container {
       gap: 1.5rem;
     }
-  
   }
-  @media (min-width: 1686px)  {
+  @media (min-width: 1680px) {
     .totalProductsIcon {
       left: 13rem !important;
     }
     .totalFavsIcon {
       left: 10.5rem !important;
-    } 
+    }
   }
-  
+
   @media (min-width: 0px) and (max-width: 1700px) {
     .line {
       /* display: flex; */

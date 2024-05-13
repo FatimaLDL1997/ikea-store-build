@@ -11,12 +11,11 @@ import { useNavigate } from "react-router-dom";
 
 import ikeaBag from "../../assets/images/ikea-bag.png";
 import { toast } from "react-toastify";
+import products from "../../utils/products";
 
 const Cart = () => {
   const navigate = useNavigate();
-
-  const [receiveType, setReceiveType] = useState("delivery");
-
+  const [option, setOption] = useState(0);
   const [hover, setHover] = useState(false);
 
   const {
@@ -32,13 +31,20 @@ const Cart = () => {
     emptyCartItems,
     found,
     user,
+    setReceiveType,
+    receiveType,
+
+    receivePrice,
+    setReceivePrice,
   } = useAppContext();
   // let count = 0;
 
-  const [itemAmount, setItemAmount] = useState(0);
+  // const [itemAmount, setItemAmount] = useState();
   const minus = document.getElementsByClassName("minus");
   const [del, setDel] = useState(false);
+
   useEffect(() => {
+    console.log(receiveType);
     calTotal();
     calTotalProd();
     calTotalFav();
@@ -48,6 +54,13 @@ const Cart = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (receiveType == "Delivery") {
+      setReceivePrice(50);
+    } else {
+      setReceivePrice(0);
+    }
+  }, [receiveType]);
   useEffect(() => {
     //for clearing cart when all items have been deleted
     if (del && cartItems.length > 0) {
@@ -96,35 +109,142 @@ const Cart = () => {
   };
 
   const increment = (e) => {
-    let numAmount = e.currentTarget.parentElement.children[1];
-    numAmount.innerHTML = parseInt(numAmount.innerHTML) + 1;
-    setItemAmount(parseInt(numAmount.innerHTML));
+    const item =
+      e.currentTarget.parentElement.parentElement.parentElement.children[0]
+        .innerHTML;
+
+    const color =
+      e.currentTarget.parentElement.parentElement.parentElement.children[1]
+        .children[1].innerHTML;
+    let foundIndex = cartItems.findIndex(
+      (element) => element[0].color === color && element[0].text === item
+    );
+
+    let numAmount = parseInt(cartItems[foundIndex][0].amount) + 1;
 
     minus[0].style.color = "black";
     minus[0].style.cursor = "pointer";
+
+    const product = products.find((product) => product.id == foundIndex);
+
+    console.log(products);
+    const {
+      id,
+      desc,
+      articleNum,
+      text,
+      type,
+      size,
+      rating,
+      reviews,
+      price,
+      options,
+      availability,
+      amount, // this amount is still the old amount as the cart is not yet updated
+    } = product;
+
+    setCartItems((prevItems) => {
+      let tempItem = [
+        {
+          id: id, //need item
+          text: text,
+          type: type,
+          size: size,
+          price: price,
+          articleNum: articleNum,
+          availability: availability,
+          optionSelected: option,
+          options: options[option], //includes color and img
+          img: options[option].img1,
+          color: options[option].color,
+          amount: numAmount,
+        },
+      ];
+      //modify that particular element in the list
+      prevItems.splice(foundIndex, 1, tempItem);
+
+      updateCartItems({ cartItems });
+      addCartItemsToLocalStorage({ cartItems });
+
+      calTotal();
+      calTotalProd();
+
+      return prevItems;
+    });
   };
 
   const decrement = (e) => {
     minus[0].style.color = "lightgrey";
     minus[0].style.cursor = "auto";
+    
+    const item =
+      e.currentTarget.parentElement.parentElement.parentElement.children[0]
+        .innerHTML;
 
-    let numAmount = e.currentTarget.parentElement.children[1];
-    setItemAmount(parseInt(numAmount.innerHTML));
+    const color =
+      e.currentTarget.parentElement.parentElement.parentElement.children[1]
+        .children[1].innerHTML;
+    let foundIndex = cartItems.findIndex(
+      (element) => element[0].color === color && element[0].text === item
+    );
 
-    if (itemAmount > 1) {
+    if (cartItems[foundIndex][0].amount > 1) {
+      let numAmount = parseInt(cartItems[foundIndex][0].amount) - 1;
+
       minus[0].style.color = "black";
       minus[0].style.cursor = "pointer";
 
-      numAmount.innerHTML = parseInt(numAmount.innerHTML) - 1;
+      const product = products.find((product) => product.id == foundIndex);
+
+      const {
+        id,
+        desc,
+        articleNum,
+        text,
+        type,
+        size,
+        rating,
+        reviews,
+        price,
+        options,
+        availability,
+        amount, // this amount is still the old amount as the cart is not yet updated
+      } = product;
+
+      setCartItems((prevItems) => {
+        let tempItem = [
+          {
+            id: id, //need item
+            text: text,
+            type: type,
+            size: size,
+            price: price,
+            articleNum: articleNum,
+            availability: availability,
+            optionSelected: option,
+            options: options[option], //includes color and img
+            img: options[option].img1,
+            color: options[option].color,
+            amount: numAmount,
+          },
+        ];
+        //modify that particular element in the list
+        prevItems.splice(foundIndex, 1, tempItem);
+
+        updateCartItems({ cartItems });
+        addCartItemsToLocalStorage({ cartItems });
+
+        calTotal();
+        calTotalProd();
+
+        return prevItems;
+      });
     }
   };
 
   const handleCheckout = () => {
     console.log("checking out ...");
-
-    toast.error(
-      "Sorry! This part of the site is not functional as it is not meant to actually sell any products"
-    );
+    navigate("/notavailable");
   };
   return (
     <Wrapper>
@@ -141,7 +261,7 @@ const Cart = () => {
             <div className="btns-container">
               <button
                 className="delivery-btn"
-                onClick={() => setReceiveType("delivery")}
+                onClick={() => setReceiveType("Delivery")}
               >
                 <FiTruck />
                 Delivery
@@ -149,7 +269,7 @@ const Cart = () => {
 
               <button
                 className="collect-btn"
-                onClick={() => setReceiveType("collect")}
+                onClick={() => setReceiveType("Collect")}
               >
                 <TbBuildingStore />
                 Collect
@@ -189,12 +309,12 @@ const Cart = () => {
                           <button className="inc-dec-btn">
                             <div
                               className="minus-container"
-                              style={{
-                                backgroundColor:
-                                  itemAmount > 0 && hover
-                                    ? "lightgrey"
-                                    : "white",
-                              }}
+                              // style={{
+                              //   backgroundColor:
+                              //     itemAmount > 0 && hover
+                              //       ? "lightgrey"
+                              //       : "white",
+                              // }}
                               onMouseEnter={handleMouseEnter}
                               onMouseLeave={handleMouseLeave}
                               onClick={(e) => decrement(e)}
@@ -233,14 +353,14 @@ const Cart = () => {
               <h4> $ {total.toFixed(2)}</h4>
             </div>
             <div className="collect-delivery-price">
-              <h4>{receiveType === "delivery" ? "Delivery" : "Collect"}</h4>
-              <h4>-</h4>
+              <h4>{receiveType}</h4>
+              <h4>${receivePrice}.00</h4>
             </div>
 
             <div className="line"></div>
             <div className="subtotal-row">
               <h4>Subtotal</h4>
-              <h2>${total.toFixed(2)}</h2>
+              <h2>${Number(total.toFixed(2)) + Number(receivePrice)}.00</h2>
             </div>
             <button
               className="continue-to-checkout"

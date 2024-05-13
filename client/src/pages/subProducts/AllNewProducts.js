@@ -57,7 +57,7 @@ const AllNewProducts = () => {
             down.style.display = "block";
           }
         });
-        console.log("outside");
+        // console.log("outside");
       }
     };
     document.addEventListener("mousedown", handleClickOutside);

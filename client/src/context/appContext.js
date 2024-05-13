@@ -117,6 +117,8 @@ const AppProvider = ({ children }) => {
 
   const [displaySearched, setDisplaySearched] = useState(false);
 
+  const [receiveType, setReceiveType] = useState("");
+  const [receivePrice, setReceivePrice] = useState(0);
   // const [reloadCount, setReloadCount] = useState(()=>{
   //   const count = localStorage.getItem("reloadCount");
   //   console.log(count);
@@ -592,6 +594,12 @@ const AppProvider = ({ children }) => {
 
         displaySearched,
         setDisplaySearched,
+
+        receiveType,
+        setReceiveType,
+
+        receivePrice,
+        setReceivePrice,
       }}
     >
       {children}
