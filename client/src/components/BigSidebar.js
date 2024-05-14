@@ -38,9 +38,9 @@ const BigSidebar = () => {
               <button className="login-btn">
                 <AiOutlineUser />
                 <div className="text">
-                  <button onClick={toggleRightSidebar}>
+                  <div onClick={toggleRightSidebar}>
                     {user ? `Hej ${user.firstName}!` : "Hej! Login or signup"}
-                  </button>
+                  </div>
                 </div>
               </button>
             )}

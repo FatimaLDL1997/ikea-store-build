@@ -37,11 +37,9 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, Mousewheel]);
 
 const NewProdDetail = ({ fav }) => {
   const [option, setOption] = useState(0);
-  const [loading, setLoading] = useState(false);
 
   const { productId } = useParams();
   const product = products.find((product) => product.id == productId);
-  console.log(products);
   const {
     id,
     desc,
@@ -55,6 +53,8 @@ const NewProdDetail = ({ fav }) => {
     options,
     availability,
     amount,
+    loading,
+    setLoading,
   } = product;
   const { examples } = options[option];
 
@@ -80,17 +80,9 @@ const NewProdDetail = ({ fav }) => {
     getFavItems,
     found,
     foundFav,
+    makeDelay,
+    delay,
   } = useAppContext();
-
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  async function makeDelay() {
-    // setLoading(true);
-    // console.log("before");
-    await delay(3000);
-    // console.log("after");
-    setLoading(false);
-  }
 
   async function timeNotification() {
     await delay(5000);
@@ -131,7 +123,7 @@ const NewProdDetail = ({ fav }) => {
     }
   };
   const changeOption = (e) => {
-    console.log(e.currentTarget.id);
+    // console.log(e.currentTarget.id);
     setOption(e.currentTarget.id);
     let buttons = Array.from(document.getElementsByClassName("option"));
     buttons.forEach((btn) => {
@@ -198,9 +190,10 @@ const NewProdDetail = ({ fav }) => {
 
         //if no same item found:
         if (foundIndex < 0 || !foundFav) {
+
           setFoundFavItem(false);
           prevItems.push(tempItem);
-          makeDelay();
+          makeDelay(3000);
           //if at least 1 item is found
           if (favItems.length > 1) {
             //add item to the same cartItems list
@@ -220,7 +213,7 @@ const NewProdDetail = ({ fav }) => {
           timeNotification();
           //modify that particular element in the list
           prevItems.splice(foundIndex, 1, tempItem);
-          makeDelay();
+          makeDelay(3000);
 
           updateFavItems({ favItems });
           addFavItemsToLocalStorage({ favItems });
@@ -272,9 +265,11 @@ const NewProdDetail = ({ fav }) => {
         // console.log(foundIndex);
 
         //if no same item found:
-        if (foundIndex < 0 || !found) {
+        if (foundIndex < 0 ) {
+          console.log('no same item found')
+
           prevItems.push(tempItem);
-          makeDelay();
+          makeDelay(3000);
           //if at least 1 item is found
           if (cartItems.length > 1) {
             //add item to the same cartItems list
@@ -291,8 +286,10 @@ const NewProdDetail = ({ fav }) => {
           // if same item found
         } else {
           //modify that particular element in the list
+          console.log('SAME item found')
+
           prevItems.splice(foundIndex, 1, tempItem);
-          makeDelay();
+          makeDelay(3000);
 
           updateCartItems({ cartItems });
           addCartItemsToLocalStorage({ cartItems });

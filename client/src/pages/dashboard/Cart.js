@@ -44,7 +44,7 @@ const Cart = () => {
   const [del, setDel] = useState(false);
 
   useEffect(() => {
-    console.log(receiveType);
+    console.log(cartItems);
     calTotal();
     calTotalProd();
     calTotalFav();
@@ -55,10 +55,20 @@ const Cart = () => {
   }, []);
 
   useEffect(() => {
-    if (receiveType == "Delivery") {
-      setReceivePrice(50);
-    } else {
-      setReceivePrice(0);
+    if (document.getElementsByClassName("delivery-btn") != undefined) {
+      let deliveryBtn = document.getElementsByClassName("delivery-btn")[0];
+      let collectBtn = document.getElementsByClassName("collect-btn")[0];
+      if (receiveType == "Delivery") {
+        deliveryBtn.style.borderColor = "black";
+        collectBtn.style.borderColor = "lightGray";
+
+        setReceivePrice(50);
+      } else {
+        collectBtn.style.borderColor = "black";
+        deliveryBtn.style.borderColor = "lightGray";
+
+        setReceivePrice(0);
+      }
     }
   }, [receiveType]);
   useEffect(() => {
@@ -116,18 +126,23 @@ const Cart = () => {
     const color =
       e.currentTarget.parentElement.parentElement.parentElement.children[1]
         .children[1].innerHTML;
+
     let foundIndex = cartItems.findIndex(
+      // this is not product id but location of it in cart
       (element) => element[0].color === color && element[0].text === item
     );
+
+    console.log(cartItems[foundIndex][0]);
 
     let numAmount = parseInt(cartItems[foundIndex][0].amount) + 1;
 
     minus[0].style.color = "black";
     minus[0].style.cursor = "pointer";
 
-    const product = products.find((product) => product.id == foundIndex);
+    const product = products.find(
+      (product) => product.id == cartItems[foundIndex][0].id
+    ); //thats the problem
 
-    console.log(products);
     const {
       id,
       desc,
@@ -176,7 +191,7 @@ const Cart = () => {
   const decrement = (e) => {
     minus[0].style.color = "lightgrey";
     minus[0].style.cursor = "auto";
-    
+
     const item =
       e.currentTarget.parentElement.parentElement.parentElement.children[0]
         .innerHTML;
@@ -184,17 +199,34 @@ const Cart = () => {
     const color =
       e.currentTarget.parentElement.parentElement.parentElement.children[1]
         .children[1].innerHTML;
+
+    // let foundIndex = cartItems.findIndex(
+    //   (element) => element[0].color === color && element[0].text === item
+    // );
+
     let foundIndex = cartItems.findIndex(
+      // this is not product id but location of it in cart
       (element) => element[0].color === color && element[0].text === item
     );
 
     if (cartItems[foundIndex][0].amount > 1) {
+      console.log(cartItems[foundIndex][0]);
+
       let numAmount = parseInt(cartItems[foundIndex][0].amount) - 1;
 
       minus[0].style.color = "black";
       minus[0].style.cursor = "pointer";
 
-      const product = products.find((product) => product.id == foundIndex);
+      const product = products.find(
+        (product) => product.id == cartItems[foundIndex][0].id
+      ); //thats the problem
+
+      // let numAmount = parseInt(cartItems[foundIndex][0].amount) - 1;
+
+      // minus[0].style.color = "black";
+      // minus[0].style.cursor = "pointer";
+
+      // const product = products.find((product) => product.id == cartItems[0][foundIndex].id);//thats the problem
 
       const {
         id,
@@ -243,8 +275,30 @@ const Cart = () => {
   };
 
   const handleCheckout = () => {
-    console.log("checking out ...");
-    navigate("/notavailable");
+    if (document.getElementsByClassName("delivery-btn") != undefined) {
+      let deliveryBtn = document.getElementsByClassName("delivery-btn")[0];
+      let collectBtn = document.getElementsByClassName("collect-btn")[0];
+
+
+      if (receiveType == "Delivery" || receiveType == "Collect") {
+        console.log("checking out ...");
+        navigate("/notavailable");
+      } else {
+        toast.error("please select Collect or Delivery first!");
+
+        // deliveryBtn.style.borderColor = "red";
+        // collectBtn.style.borderColor = "red";
+
+        // makeDelay(6000)
+        setTimeout(() => {
+          deliveryBtn.style.borderColor = "black";
+          collectBtn.style.borderColor = "black";
+        }, 3000);
+
+        deliveryBtn.style.borderColor = "red";
+        collectBtn.style.borderColor = "red";
+      }
+    }
   };
   return (
     <Wrapper>

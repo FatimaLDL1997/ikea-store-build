@@ -190,8 +190,8 @@ const AllNewProducts = () => {
           >
             {filter.map((item) => {
               return (
-                <SwiperSlide>
-                  <div className={item.name}>
+                <SwiperSlide key={item.id}>
+                  <div  className={item.name}>
                     <button
                       className={item.btn}
                       onClick={(e) => {
@@ -209,9 +209,9 @@ const AllNewProducts = () => {
 
                     <div className="box">
                       <div className="sort-container ">
-                        {item.options.map((option) => {
+                        {item.options.map((index, option) => {
                           return (
-                            <label className={item.labelName}>
+                            <label key={index} className={item.labelName}>
                               {option}
                               <input type="radio" name="radio" />
                               <span

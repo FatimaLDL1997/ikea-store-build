@@ -119,6 +119,9 @@ const AppProvider = ({ children }) => {
 
   const [receiveType, setReceiveType] = useState("");
   const [receivePrice, setReceivePrice] = useState(0);
+
+  const [loading, setLoading] = useState(false);
+
   // const [reloadCount, setReloadCount] = useState(()=>{
   //   const count = localStorage.getItem("reloadCount");
   //   console.log(count);
@@ -244,7 +247,7 @@ const AppProvider = ({ children }) => {
 
       const { user, token } = response.data;
       // console.log(response.data);
-      console.log("good");
+      // console.log("good");
 
       dispatch({
         type: SETUP_USER_SUCCESS,
@@ -358,25 +361,25 @@ const AppProvider = ({ children }) => {
 
   //for search _____________
   const getSearchedItems = async () => {
-    console.log("searching items app context");
+    // console.log("searching items app context");
 
     let url = "/find";
     const { search } = state;
     if (search) {
       url = `/find?search=${search}`;
     }
-    console.log(url);
+    // console.log(url);
     dispatch({ type: GET_SEARCHED_BEGIN });
     try {
       const { data } = await authFetch(url);
-      console.log(data);
+      // console.log(data);
 
       const { prods } = data;
-      console.log(prods);
+      // console.log(prods);
 
       dispatch({ type: GET_SEARCHED_SUCCESS, payload: { prods } });
     } catch (error) {
-      console.log("Error searching: " + error.message);
+      // console.log("Error searching: " + error.message);
     }
     clearAlert();
   };
@@ -390,7 +393,7 @@ const AppProvider = ({ children }) => {
 
   //__________________________
   const getCartItems = async () => {
-    console.log("getting");
+    // console.log("getting");
     dispatch({ type: GET_CARTITEMS_BEGIN });
     try {
       const { data } = await authFetch.get("/prod");
@@ -421,13 +424,13 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
   const emptyCartItems = async () => {
-    console.log("starting Delete All");
+    // console.log("starting Delete All");
     dispatch({ type: DELETE_CARTITEMS_BEGIN });
     try {
-      console.log("here........");
+      // console.log("here........");
       await authFetch.delete("/prod");
     } catch (error) {
-      console.log("logging out! delete error");
+      // console.log("logging out! delete error");
     }
   };
 
@@ -453,15 +456,15 @@ const AppProvider = ({ children }) => {
   };
 
   const getFavItems = async () => {
-    console.log("getting favs");
+    // console.log("getting favs");
     dispatch({ type: GET_FAVITEMS_BEGIN });
     try {
       if (user != null) {
         const { data } = await authFetch.get("/fav");
-        console.log(data.retrievedItems);
+        // console.log(data.retrievedItems);
 
         if (data.retrievedItems) {
-          console.log("favs gotten");
+          // console.log("favs gotten");
           const { retrievedItems } = data;
           const { favItems } = retrievedItems;
 
@@ -507,17 +510,25 @@ const AppProvider = ({ children }) => {
   };
 
   const emptyFavItems = async () => {
-    console.log("starting Delete All Favs");
+    // console.log("starting Delete All Favs");
     dispatch({ type: DELETE_FAVITEMS_BEGIN });
     try {
-      console.log("here........");
+      // console.log("here........");
       await authFetch.delete("/fav");
     } catch (error) {
-      console.log("logging out! delete error");
+      // console.log("logging out! delete error");
     }
   };
 
   //----------------------------------------------------
+
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  async function makeDelay(time) {
+    await delay(time);
+    setLoading(false);
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -600,6 +611,13 @@ const AppProvider = ({ children }) => {
 
         receivePrice,
         setReceivePrice,
+
+        makeDelay, 
+        delay, 
+
+        loading, 
+        setLoading, 
+        
       }}
     >
       {children}

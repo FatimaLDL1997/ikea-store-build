@@ -17,7 +17,7 @@ const SharedLayout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(search.length);
+    // console.log(search.length);
     if (search.length > 0) {
       navigate("/");
     }
