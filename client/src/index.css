@@ -10,6 +10,7 @@
 html {
   font-size: 100%;
   scroll-behavior: smooth;
+  touch-action: manipulation;
 } /*16px*/
 
 :root {
@@ -403,7 +404,7 @@ ul {
   padding-left: 6.8rem;
   padding-right: 4rem;
   font-weight: bolder;
-  font-size: 2.3rem;
+  font-size: 1.5rem;
   color: black;
 }
 .nav-links-bold {

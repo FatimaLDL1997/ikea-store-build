@@ -38,7 +38,20 @@ const Navbar = () => {
     search,
     clearFilters,
     handleChange,
+    displaySearched,
+    setDisplaySearched,
   } = useAppContext();
+
+  useEffect(() => {
+    // console.log(search.length);
+    if (search.length > 0) {
+      setDisplaySearched(true);
+      // console.log(displaySearched);
+    } else {
+      setDisplaySearched(false);
+      // console.log(displaySearched);
+    }
+  }, [search]);
 
   useEffect(() => {
     calTotalProd();
@@ -141,8 +154,8 @@ const Navbar = () => {
               <AiOutlineUser onClick={toggleRightSidebar} />
               {windowWidth > 1700 && (
                 <div onClick={toggleRightSidebar}>
-                {user ? `Hej ${user.firstName}!` : "Hej! Login or signup"}
-              </div>
+                  {user ? `Hej ${user.firstName}!` : "Hej! Login or signup"}
+                </div>
               )}
             </button>
 
@@ -226,8 +239,8 @@ const Navbar = () => {
             <input
               type="text"
               name="search"
-              // value= {l}
-              // onChange={search}
+              value={search}
+              onChange={handleSearch}
               className="form-input"
               placeholder="Find what you need to Bring Home to Life"
               style={{ width: "88vw" }}

@@ -41,22 +41,15 @@ const Main = () => {
   } = useAppContext();
 
   const navigate = useNavigate();
-  console.log(cards[0].image);
 
   useEffect(() => {
     getSearchedItems();
   }, [displaySearched]);
 
-  // console.log(search.length);
-  if (search.length > 0) {
-    setDisplaySearched(true);
-    // console.log(displaySearched);
-  } else {
-    setDisplaySearched(false);
-    // console.log(displaySearched);
-  }
-  // console.log(prods);
-  // console.log(products);
+
+  console.log(search.length);
+ 
+
   return (
     <Wrapper>
       <div className="main-content">
@@ -142,9 +135,7 @@ const Main = () => {
                 className="swiper-slider-container"
                 grabCursor={true}
                 spaceBetween={25}
-                slidesPerView={
-                  windowWidth > 700 ? 3 : 1
-                }
+                slidesPerView={windowWidth > 700 ? 3 : 1}
                 centeredSlides={false}
                 keyboard={{ enabled: true }}
                 direction="horizontal"
@@ -154,8 +145,8 @@ const Main = () => {
               >
                 {cards.map((card) => {
                   return (
-                    <div key={card.id} className="slide" >
-                      <SwiperSlide key={card.id} >
+                    <div key={card.id} className="slide">
+                      <SwiperSlide key={card.id}>
                         <img
                           src={card.image}
                           style={{
@@ -171,7 +162,7 @@ const Main = () => {
                             backgroundColor: card.color,
                             padding: "2rem",
                             marginBottom: "2rem",
-                            height: windowWidth > 700 ? "30rem" : "20rem" ,
+                            height: windowWidth > 700 ? "30rem" : "20rem",
                           }}
                         >
                           <h1
@@ -196,7 +187,7 @@ const Main = () => {
                               cursor: "pointer",
                               position: "absolute",
                               bottom: "60px",
-                              fontSize: windowWidth > 1000 ? '3rem': '1rem',
+                              fontSize: windowWidth > 1000 ? "3rem" : "1rem",
                               fontWeight: "200",
                             }}
                           />
