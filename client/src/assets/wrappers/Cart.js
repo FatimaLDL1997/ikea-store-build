@@ -56,6 +56,9 @@ const Wrapper = styled.div`
   }
   .left {
     padding: 2rem;
+    padding-right: 0;
+    padding-left: 0;
+
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -71,6 +74,8 @@ const Wrapper = styled.div`
   .details .availability {
     font-size: 0.8rem;
     align-items: center;
+    display: flex;
+    flex-wrap:wrap;
   }
   .right .price {
     font-size: 1rem;
@@ -88,6 +93,19 @@ const Wrapper = styled.div`
   .details {
     padding-left: 2rem;
     width: 100%;
+  }
+  @media (max-width: 800px) {
+    .details {
+      width: 8rem !important; 
+    }
+    .amount-delete-row{
+      padding-top: 1rem;
+
+      flex-direction: column !important;
+    }
+    .inc-dec-btn{
+      width: 100% !important;
+    }
   }
   .dot {
     font-size: 2rem;
@@ -152,6 +170,7 @@ const Wrapper = styled.div`
     color: grey;
     font-size: 1.3rem;
   }
+  
   .amount-delete-row:hover {
     cursor: pointer;
     color: black;

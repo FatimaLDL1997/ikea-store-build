@@ -9,6 +9,7 @@ const NotAvailable = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        textAlign:'center'
       }}
     >
       <img style={{ width: "20rem" }} src={sadImg} />
