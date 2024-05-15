@@ -1,8 +1,8 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Wrapper from "../../assets/wrappers/sub-wrappers/NewProduct";
 import { AiFillStar, AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import { MdAddShoppingCart } from "react-icons/md";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/appContext";
 
 const NewProduct = ({
@@ -15,17 +15,29 @@ const NewProduct = ({
   options,
   size,
   price,
-  
 }) => {
-  const navigate = useNavigate()
-  const {activeProd, activeRm} = useAppContext()
-  useEffect(()=>{
-console.log(options[0].examples[0])
-  },[activeProd])
+  const navigate = useNavigate();
+  const { activeProd, activeRm } = useAppContext();
+  useEffect(() => {
+    console.log(options[0].examples[0]);
+    console.log(window.location.pathname);
+  }, [activeProd]);
   return (
     <Wrapper>
-      <div key={id} className="product-item-container" onClick={()=>navigate(`/new-product-details/${id}`)}>
-        <img src={activeProd? img : options[0].examples[2].img2 } className="img" alt="img" />
+      <div
+        key={id}
+        className="product-item-container"
+        onClick={() => navigate(`/new-product-details/${id}`)}
+      >
+        {window.location.pathname == "/newproducts" ? (
+          <img src={img} className="img" alt="img" />
+        ) : (
+          <img
+            src={activeProd ? img : options[0].examples[2].img2}
+            className="img"
+            alt="img"
+          />
+        )}
         <div className="product-item">
           <div className="name">{text}</div>
           <div className="type-size">
@@ -69,7 +81,7 @@ console.log(options[0].examples[0])
               <div>
                 <AiFillStar />
               </div>
-            ) : ( 
+            ) : (
               <div>
                 <AiOutlineStar />
               </div>
@@ -90,7 +102,7 @@ console.log(options[0].examples[0])
           </h2>
           <div className="add-container">
             <div className="add-to-cart">
-              <MdAddShoppingCart/>
+              <MdAddShoppingCart />
             </div>
             <div className="add-to-fav">
               <AiOutlineHeart />

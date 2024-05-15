@@ -123,7 +123,7 @@ const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
 
-  const [activeProd, setActiveProd] = useState(false);
+  const [activeProd, setActiveProd] = useState(true);
   const [activeRm, setActiveRm] = useState(false);
 
   // const [reloadCount, setReloadCount] = useState(()=>{
