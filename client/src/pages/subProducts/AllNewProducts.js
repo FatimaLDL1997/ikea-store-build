@@ -24,10 +24,9 @@ import "swiper/css/scrollbar";
 SwiperCore.use([Navigation, Pagination, Scrollbar, Mousewheel]);
 
 const AllNewProducts = () => {
-  const { windowWidth } = useAppContext();
+  const { windowWidth, activeProd, activeRm, setActiveProd, setActiveRm } =
+    useAppContext();
   const [clicked, setClicked] = useState(false);
-  const [activeProd, setActiveProd] = useState(false);
-  const [activeRm, setActiveRm] = useState(false);
 
   const allUpArrows = document.getElementsByClassName("up-arrow");
   const allDownArrows = document.getElementsByClassName("down-arrow");
@@ -179,8 +178,16 @@ const AllNewProducts = () => {
           <Swiper
             className="swiper-slider-container"
             grabCursor={true}
-            spaceBetween={windowWidth < 900 ? 20: 10  }
-            slidesPerView={windowWidth < 400 ? 2: 3  && windowWidth<700? 3:5  && windowWidth<900? 5:7}
+            spaceBetween={windowWidth < 900 ? 20 : 10}
+            slidesPerView={
+              windowWidth < 400
+                ? 2
+                : 3 && windowWidth < 700
+                ? 3
+                : 5 && windowWidth < 900
+                ? 5
+                : 7
+            }
             centeredSlides={false}
             keyboard={{ enabled: true }}
             direction="horizontal"
@@ -191,7 +198,7 @@ const AllNewProducts = () => {
             {filter.map((item) => {
               return (
                 <SwiperSlide key={item.id}>
-                  <div  className={item.name}>
+                  <div className={item.name}>
                     <button
                       className={item.btn}
                       onClick={(e) => {

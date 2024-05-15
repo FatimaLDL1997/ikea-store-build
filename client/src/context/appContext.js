@@ -122,6 +122,10 @@ const AppProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(false);
 
+
+  const [activeProd, setActiveProd] = useState(false);
+  const [activeRm, setActiveRm] = useState(false);
+
   // const [reloadCount, setReloadCount] = useState(()=>{
   //   const count = localStorage.getItem("reloadCount");
   //   console.log(count);
@@ -612,12 +616,16 @@ const AppProvider = ({ children }) => {
         receivePrice,
         setReceivePrice,
 
-        makeDelay, 
-        delay, 
+        makeDelay,
+        delay,
 
-        loading, 
-        setLoading, 
-        
+        loading,
+        setLoading,
+
+        activeProd,
+        activeRm,
+        setActiveProd,
+        setActiveRm,
       }}
     >
       {children}
