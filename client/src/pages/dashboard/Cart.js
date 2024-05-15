@@ -55,9 +55,19 @@ const Cart = () => {
   }, []);
 
   useEffect(() => {
-    if (document.getElementsByClassName("delivery-btn") != undefined) {
-      let deliveryBtn = document.getElementsByClassName("delivery-btn")[0];
-      let collectBtn = document.getElementsByClassName("collect-btn")[0];
+    console.log("here.............");
+    // document.addEventListener("DOMContentLoaded", function (e) {
+    console.log("dom loaded ");
+
+    let deliveryBtn = document.getElementsByClassName("delivery-btn")[0];
+    let collectBtn = document.getElementsByClassName("collect-btn")[0];
+
+    console.log(deliveryBtn);
+    if (deliveryBtn != undefined || collectBtn != undefined) {
+      console.log("works");
+      deliveryBtn.style.borderColor = "lightGray";
+      collectBtn.style.borderColor = "lightGray";
+
       if (receiveType == "Delivery") {
         deliveryBtn.style.borderColor = "black";
         collectBtn.style.borderColor = "lightGray";
@@ -69,8 +79,11 @@ const Cart = () => {
 
         setReceivePrice(0);
       }
+    } else {
+      console.log("not yet loaded ");
     }
   }, [receiveType]);
+
   useEffect(() => {
     //for clearing cart when all items have been deleted
     if (del && cartItems.length > 0) {
@@ -275,24 +288,20 @@ const Cart = () => {
   };
 
   const handleCheckout = () => {
-    if (document.getElementsByClassName("delivery-btn") != undefined) {
-      let deliveryBtn = document.getElementsByClassName("delivery-btn")[0];
-      let collectBtn = document.getElementsByClassName("collect-btn")[0];
+    console.log("here.....");
+    var deliveryBtn = document.getElementsByClassName("delivery-btn")[0];
+    var collectBtn = document.getElementsByClassName("collect-btn")[0];
 
-
+    if (deliveryBtn != undefined || collectBtn != undefined) {
       if (receiveType == "Delivery" || receiveType == "Collect") {
         console.log("checking out ...");
         navigate("/notavailable");
       } else {
         toast.error("please select Collect or Delivery first!");
 
-        // deliveryBtn.style.borderColor = "red";
-        // collectBtn.style.borderColor = "red";
-
-        // makeDelay(6000)
         setTimeout(() => {
-          deliveryBtn.style.borderColor = "black";
-          collectBtn.style.borderColor = "black";
+          deliveryBtn.style.borderColor = "lightGray";
+          collectBtn.style.borderColor = "lightGray";
         }, 3000);
 
         deliveryBtn.style.borderColor = "red";
