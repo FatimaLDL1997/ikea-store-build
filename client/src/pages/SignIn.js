@@ -35,10 +35,6 @@ const SignIn = () => {
     windowWidth,
   } = useAppContext();
 
-  const toggleMember = () => {
-    setValues({ ...values, isMember: !values.isMember });
-  };
-
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
@@ -47,9 +43,8 @@ const SignIn = () => {
     e.preventDefault();
     const { email, password } = values;
     if (!email || !password) {
-      toast.error('Please try again with correct values!')
+      toast.error("Please try again with correct values!");
       displayAlert();
-
       return;
     }
     const currentUser = {
@@ -61,7 +56,6 @@ const SignIn = () => {
       endpoint: "login",
       alertText: "Login Successful! Redirecting...",
     });
-    
   };
 
   useEffect(() => {
@@ -78,7 +72,6 @@ const SignIn = () => {
         window.location.reload();
       }, 3000);
     }
-   
   }, [user, navigate]);
 
   return (
@@ -144,22 +137,18 @@ const SignIn = () => {
               onChange={handleChange}
               value={values.email}
             ></input>
-            <label>
-              Alternative login: <a>Alternative login with a one-time code</a>
-            </label>
+            <label>Guest Email: lala@gmail.com</label>
           </div>
           <div>
             <label>Password</label>
             <input
               type="password"
               name="password"
-              placeholder="Secret"
+              placeholder="password"
               onChange={handleChange}
               value={values.password}
             ></input>
-            <label style={{ textDecoration: "underline" }}>
-              <a> Forgot your password</a>
-            </label>
+            <label>Guest Password: Secret</label>
           </div>
           <div className="checkbox-row">
             <div className="checkbox-container">
@@ -194,6 +183,7 @@ const SignIn = () => {
               />
             )}
           </button>
+
           <h1>Don't have an IKEA account yet? Create one now</h1>
           <button
             className="register-btn"

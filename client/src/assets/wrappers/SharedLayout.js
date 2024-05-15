@@ -5,6 +5,8 @@ const Wrapper = styled.section`
 
   .footer {
     flex-direction: column;
+    background-color: whitesmoke;
+    padding-top: 1rem;
   }
   @media (min-width: 1200px) {
     .footer {

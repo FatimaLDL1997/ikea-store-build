@@ -187,6 +187,20 @@ const Wrapper = styled.div`
     cursor: pointer;
     background-color: #004e91;
   }
+  .guest-btn {
+    background-color: #0058a3;
+    height: 4rem;
+    border-radius: 50px;
+    border: 1px solid #0058a3;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 40px;
+  }
+  .guest-btn:hover {
+    cursor: pointer;
+    background-color: #004e91;
+  }
   .register-btn {
     background-color: whitesmoke;
     height: 4rem;
