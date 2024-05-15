@@ -35,6 +35,13 @@ const SignIn = () => {
     windowWidth,
   } = useAppContext();
 
+  const handleGuest = (enteredEmail, enteredPassword) => {
+    console.log("guest");
+    values.email = enteredEmail;
+    values.password = enteredPassword;
+    setValues({ ...values, [enteredEmail]: enteredPassword });
+    console.log(values);
+  };
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
@@ -137,7 +144,9 @@ const SignIn = () => {
               onChange={handleChange}
               value={values.email}
             ></input>
-            <label>Guest Email: lala@gmail.com</label>
+            <label>
+              Alternative login: <a>Alternative login with a one-time code</a>
+            </label>
           </div>
           <div>
             <label>Password</label>
@@ -148,8 +157,11 @@ const SignIn = () => {
               onChange={handleChange}
               value={values.password}
             ></input>
-            <label>Guest Password: Secret</label>
           </div>
+          <label>
+            <a>Forgot your password</a>
+          </label>
+
           <div className="checkbox-row">
             <div className="checkbox-container">
               <input
@@ -183,6 +195,25 @@ const SignIn = () => {
               />
             )}
           </button>
+          <button
+            className="guest-btn"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            type="submit"
+            onClick={() => handleGuest("lala@gmail.com", "Secret")}
+          >
+            {!showAlert ? (
+              "Guest or just lazy!"
+            ) : (
+              <img
+                style={{ position: "relative", height: "63%" }}
+                src={loader}
+              />
+            )}
+          </button>
 
           <h1>Don't have an IKEA account yet? Create one now</h1>
           <button
@@ -191,6 +222,7 @@ const SignIn = () => {
           >
             I'm shopping for my home
           </button>
+
           {windowWidth < 640 && (
             <footer className={"footer"} style={{ color: "black" }}>
               Ikea.ca - <a>Cookie Policy</a> and <a>Privacy Policy</a>© Inter
