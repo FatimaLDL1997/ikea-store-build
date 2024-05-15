@@ -137,7 +137,7 @@ const Wrapper = styled.div`
   .container-all-products {
     /* background-color: #76be7a; */
     /* background-color: red; */
-    height: 100vh;
+    margin-bottom: 20rem;
     /* width: inherit; */
     /* position: relative; */
     /* margin: 0; */
@@ -349,12 +349,11 @@ const Wrapper = styled.div`
     }
   }
   .product-box {
-    height: 30rem;
-
+    
+    /* height: 30rem; */
     grid-gap: 5rem;
-
+margin-bottom: 20rem;
     display: grid;
-    margin-bottom: 30rem;
 
     /* flex-direction: row; */
     /* flex-wrap: wrap; */

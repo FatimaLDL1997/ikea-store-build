@@ -402,7 +402,7 @@ const Cart = () => {
                       </div>
                     </div>
                     <div className="right">
-                      <div className="price">${item[0].price}</div>
+                      <div className="price">${item[0].price}.00</div>
                     </div>
                   </div>
                 );

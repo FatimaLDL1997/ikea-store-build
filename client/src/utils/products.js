@@ -120,7 +120,7 @@ const products = [
     options: "2",
     amount: '1', 
     img: "/images/sofa-yellow.jpg",
-    price: "4.00",
+    price: "4",
     desc: "We launched KLIPPAN sofa in the 1980s and it’s still a favorite. It's comfortable, fits almost everywhere and has many covers to choose from. A modern and timeless classic!",
     articleNum: "694.965.69",
     availability: 'available for Home delivery', 
