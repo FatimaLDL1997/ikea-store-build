@@ -316,9 +316,9 @@ const Cart = () => {
           <div className="left-side">
             <div className="top-row">
               <h1>Shopping cart</h1>
-              <div>
+              {/* <div>
                 <SlOptions />
-              </div>
+              </div> */}
             </div>
             <h3>How would you like to receive your order? </h3>
             <div className="btns-container">

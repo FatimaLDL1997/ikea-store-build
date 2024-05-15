@@ -39,13 +39,6 @@ const FavPage = () => {
       console.log(favItems);
     }
 
-    //remove add to fav icon from each item since this the fav list its self
-    // const fav = document.getElementsByClassName("add-to-fav");
-    // const result = Array.from(fav);
-    // console.log(result);
-    // result.forEach((element) => {
-    //   element.style.display = "none";
-    // });
   }, []);
 
   useEffect(() => {
@@ -75,9 +68,6 @@ const FavPage = () => {
       e.currentTarget.parentElement.parentElement.parentElement.children[2]
         .innerHTML;
 
-    // console.log(item);
-    // console.log(color);
-
     let foundIndex = favItems.findIndex(
       (element) => element[0].color === color && element[0].text === item
     );
@@ -87,7 +77,6 @@ const FavPage = () => {
       prevItems.splice(foundIndex, 1);
       addFavItemsToLocalStorage({ favItems });
 
-      // calTotal();
       calTotalFav();
 
       return prevItems;
@@ -145,6 +134,8 @@ const FavPage = () => {
           })}
         </div>
       ) : (
+
+        //if fav page is empty 
         <div
           style={{
             display: "flex",

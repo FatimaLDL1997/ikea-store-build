@@ -113,7 +113,7 @@ const Wrapper = styled.div`
   .minus-container,
   .plus-container {
     border-radius: 50px;
-    background-color: white;
+    background-color: transparent;
     width: 2.5rem;
     height: 2.5rem;
     display: flex;
