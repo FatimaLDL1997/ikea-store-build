@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-color: #4e5959;
-input{
+  color: #4e5959;
+  input {
     text-indent: 6px;
     color: black;
-}
+  }
   a {
     text-decoration: underline;
     cursor: pointer;
@@ -34,7 +34,6 @@ input{
   .instruction-label {
     position: relative;
     top: -2rem;
-
   }
   .first-side {
     display: flex;
@@ -118,6 +117,9 @@ input{
     font-style: normal;
     color: black;
     font-family: "Roboto", sans-serif;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
   }
   footer a {
     text-decoration: underline;
@@ -174,10 +176,8 @@ input{
     font-family: "Roboto", sans-serif;
   }
   @media (max-width: 640px) {
-
     .second-side h2 {
       padding-top: 0 !important;
-      
     }
   }
   .info {

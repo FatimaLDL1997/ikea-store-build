@@ -52,8 +52,8 @@ const Wrapper = styled.nav`
   }
   .toggle-btn-container {
     font-family: monospace;
-    width: 2rem;
-    height: 2rem;
+    width: 1.8rem;
+    height: 1.8rem;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;

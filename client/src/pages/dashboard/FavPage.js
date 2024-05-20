@@ -109,7 +109,7 @@ const FavPage = () => {
 
                   <div className="price">
                     <span>$</span>
-                    {item[0].price}
+                    {item[0].price}.00
                   </div>
                   <h2></h2>
 

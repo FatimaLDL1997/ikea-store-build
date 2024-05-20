@@ -38,7 +38,7 @@ const SharedLayout = () => {
           </div>
         </div>
       </main>
-      <footer className={"footer"} style={{ color: "black" }}>
+      <footer className={"footer"} >
         <h2>© Inter IKEA Systems B.V. 1999-2024</h2>
         <div className="footer-options">
           <h1>Privacy Policy</h1>

@@ -4,9 +4,13 @@ const Wrapper = styled.div`
   //when small on top of each other --> col
   /* .main-content{
     overflow: visible;
+  /* } */
+  /* .footer {
+    flex-direction: column;
+    background-color: whitesmoke;
+    padding-top: 1rem;
   } */
-
-  .popup-container {
+  */ .popup-container {
     display: flex;
     justify-content: center;
     align-items: center;
