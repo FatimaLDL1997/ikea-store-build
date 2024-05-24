@@ -47,7 +47,7 @@ const Register = () => {
   const onSubmit = (e) => {
     console.log("submitted");
     e.preventDefault();
-    const { firstName, lastName, email, password } = values;
+    const { firstName, lastName, email, password, address } = values;
     if (!email || !password || !lastName || !firstName) {
       displayAlert();
       toast.error("Error! Please check your entries again!")
@@ -58,6 +58,7 @@ const Register = () => {
       firstName,
       email,
       password,
+      address,
     };
     console.log(currentUser);
     // if (isMember) {

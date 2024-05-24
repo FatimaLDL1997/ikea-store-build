@@ -50,7 +50,7 @@ const login = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  const { email, name, lastName } = req.body;
+  const { email, name, lastName, address } = req.body;
   if (!email || !name || !lastName) {
     throw new BadRequestError("Please provide all values");
   }
@@ -59,6 +59,7 @@ const updateUser = async (req, res) => {
   user.email = email;
   user.name = name;
   user.lastName = lastName;
+  user.address = address; 
 
   await user.save();
 

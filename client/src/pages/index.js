@@ -3,5 +3,5 @@ import Error from "./Error";
 // import Landing from "./Landing";
 import ProtectedRoute from "./ProtectedRoute";
 import SignIn from "./SignIn";
-
-export {  Register,SignIn,  Error, ProtectedRoute };
+import AddressPopUp from "./AddressPopUp";
+export { Register, SignIn, Error, ProtectedRoute, AddressPopUp };

@@ -10,6 +10,7 @@ import {
 } from "../../components";
 import { useAppContext } from "../../context/appContext";
 import { useEffect } from "react";
+import AddressPopUp from "../AddressPopUp";
 
 const SharedLayout = () => {
   const { showSidebar, toggleSidebar, search } = useAppContext();
@@ -30,6 +31,7 @@ const SharedLayout = () => {
         <Overlay />
         <BigSidebar />
         <RightSidebar />
+        <AddressPopUp/>
 
         <div>
           <Navbar />

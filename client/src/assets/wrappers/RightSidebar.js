@@ -3,6 +3,9 @@ import styled from "styled-components";
 const Wrapper = styled.aside`
   /* display: none; */
   /* @media (min-width: 992px) { */
+  .address:focus {
+    outline: none;
+  }
   display: block;
   box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.1);
   .sidebar-container {
@@ -24,8 +27,25 @@ const Wrapper = styled.aside`
   .content {
     position: sticky;
     top: 0;
-    /* padding-top: 8rem; */
     background-color: #0058a3;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .content h2 {
+    padding: 1.5rem;
+    font-weight: 100;
+  }
+  .content form {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .content input {
+    margin-bottom: 1rem;
   }
   .content img {
     width: 5.5rem;
@@ -82,8 +102,6 @@ const Wrapper = styled.aside`
     font-size: 17px;
     font-weight: 700;
     color: black;
-    
-    
   }
   .second-row button {
     background-color: #ffffff;
@@ -105,7 +123,7 @@ const Wrapper = styled.aside`
     font-size: 25px;
     font-weight: 700;
   }
-  .first-row button:hover{
+  .first-row button:hover {
     cursor: pointer;
     text-decoration: underline;
     background-color: whitesmoke;
@@ -114,7 +132,6 @@ const Wrapper = styled.aside`
   .third-row button:hover {
     cursor: pointer;
     background-color: whitesmoke;
-
   }
   h1 {
     font-size: 36px;
@@ -142,7 +159,6 @@ const Wrapper = styled.aside`
     /* margin-right: 20px !important; */
     font-size: 27px;
     background-color: #ffffff;
-
   }
   .close-container:hover {
     background-color: lightgrey;

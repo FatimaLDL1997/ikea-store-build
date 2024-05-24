@@ -10,56 +10,8 @@ const Wrapper = styled.div`
     background-color: whitesmoke;
     padding-top: 1rem;
   } */
-  */ .popup-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .popup-text {
-    position: relative;
-    background: white;
-    width: 80vw;
-    height: 60vh;
-    border: 4px #1565c0 solid;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1.5rem;
-    overflow-y: scroll;
-
-    /* overflow-y: scroll; */
-
-    .title {
-      margin: 0;
-
-      margin-top: 0;
-      font-size: 1.5rem;
-    }
-    p {
-      font-size: 1rem;
-    }
-  }
-  .cross-container {
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    width: 100%;
-    /* background-color: red; */
-  }
-  .cross-container svg {
-    /* padding: 10px; */
-    font-size: 1rem;
-  }
-  .cross-container:hover {
-    cursor: pointer;
-    color: #1565c0;
-  }
-  .popup {
-    top: 10vh;
-    /* right: 50%; */
-    /* width: 19%; */
-    position: fixed;
-  }
+  
+  
   .top-container {
     display: flex;
     flex-direction: column;

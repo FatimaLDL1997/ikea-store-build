@@ -40,6 +40,12 @@ const Navbar = () => {
     handleChange,
     displaySearched,
     setDisplaySearched,
+    toggleInfoPopUp,
+    showInfo,
+    setshowInfo,
+
+    address,
+    setAddress,
   } = useAppContext();
 
   useEffect(() => {
@@ -91,6 +97,11 @@ const Navbar = () => {
 
   const handleSearch = (e) => {
     handleChange({ name: e.target.name, value: e.target.value });
+  };
+
+  const handleAddress = () => {
+    console.log("address change");
+    toggleInfoPopUp();
   };
 
   return (
@@ -278,7 +289,9 @@ const Navbar = () => {
             <div className="loc-store">
               <div className="delivery">
                 <FiTruck />
-                <h1>M4X 2X2</h1>
+                <h1 className="delivery-text" onClick={() => toggleInfoPopUp()}>
+                  {address.length > 0 ? address : "POSTAL CODE"}
+                </h1>
               </div>
               <div className="mystore">
                 <TbBuildingStore />
@@ -291,7 +304,9 @@ const Navbar = () => {
           <div className="loc-store-small">
             <div className="delivery">
               <FiTruck />
-              <h1>M4X 2X2</h1>
+              <h1 className="delivery-text" onClick={() => toggleInfoPopUp()}>
+                {address.length > 0 ? address : "POSTAL CODE"}
+              </h1>
             </div>
             <div className="mystore">
               <TbBuildingStore />

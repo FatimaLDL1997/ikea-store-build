@@ -42,6 +42,10 @@ import {
   UPDATE_FAVITEMS_SUCCESS, 
   UPDATE_FAVITEMS_ERROR,
 
+  UPDATE_ADDRESS_BEGIN, 
+  UPDATE_ADDRESS_SUCCESS, 
+  UPDATE_ADDRESS_ERROR, 
+
   GET_SEARCHED_BEGIN,
   GET_SEARCHED_SUCCESS, 
   
@@ -324,10 +328,37 @@ const reducer = (state, action) => {
       alertText: action.payload.msg,
     };
   }
+
+
   if (action.type == DELETE_FAVITEMS_BEGIN) {
     return { ...state, isLoading: true };
   }
   
+
+  if (action.type == UPDATE_ADDRESS_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+  if (action.type == UPDATE_ADDRESS_SUCCESS) {
+    // console.log(action.payload)
+    return {
+      ...state,
+      isLoading: false,
+      token: action.payload.token,
+      user: action.payload.user,
+      showAlert: true,
+      alertType: "success",
+      alertText: "Address Updated!",
+    };
+  }
+  if (action.type === UPDATE_ADDRESS_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: "danger",
+      alertText: action.payload.msg,
+    };
+  }
 };
 
 export default reducer;

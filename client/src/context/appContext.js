@@ -21,6 +21,9 @@ import {
   UPDATE_FAVITEMS_BEGIN,
   UPDATE_FAVITEMS_SUCCESS,
   UPDATE_FAVITEMS_ERROR,
+  UPDATE_ADDRESS_BEGIN,
+  UPDATE_ADDRESS_SUCCESS,
+  UPDATE_ADDRESS_ERROR,
   GET_CARTITEMS_SUCCESS,
   GET_CARTITEMS_BEGIN,
   GET_CARTITEMS_ERROR,
@@ -42,6 +45,7 @@ import axios from "axios";
 // set as default
 const token = localStorage.getItem("token");
 const user = localStorage.getItem("user");
+
 export const initialState = {
   showSidebar: false,
   showRightSidebar: false,
@@ -122,9 +126,10 @@ const AppProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(false);
 
-
   const [activeProd, setActiveProd] = useState(true);
   const [activeRm, setActiveRm] = useState(false);
+
+  const [address, setAddress] = useState("A1B 2C3");
 
   // const [reloadCount, setReloadCount] = useState(()=>{
   //   const count = localStorage.getItem("reloadCount");
@@ -179,7 +184,7 @@ const AppProvider = ({ children }) => {
   });
 
   const [showPopUp, setShowPopUp] = useState(false);
-  const [showInfo, setShowInfo] = useState(true);
+  const [showInfo, setShowInfo] = useState(false);
 
   const togglePopUp = () => {
     setShowPopUp(!showPopUp);
@@ -524,6 +529,36 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  function okNumber(myform) {
+    var regex = /^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]\d *$/;
+    if (regex.test(myform) == false) {
+      console.log("Invalid");
+
+      return false;
+    }
+    console.log(" Valid ");
+
+    return true;
+  }
+
+  const handleAddressChange = (e) => {
+    e.preventDefault()
+    let addressInput = document.getElementsByClassName("address")[0];
+
+    // setAddress(e.children[0].target.value.toUpperCase());
+    console.log(addressInput.style);
+    console.log(okNumber(address));
+    if (!okNumber(address)) {
+      // setAddress('')
+      toggleInfoPopUp()
+      toast.error('Please make sure you use this format: A1B 2C3 or A1B2C3')
+      addressInput.style.border = '3px solid red';
+      console.log("please make sure you use this format: A1B 2C3");
+    } else {
+      addressInput.style.border = '3px solid green';
+    }
+  };
+
   //----------------------------------------------------
 
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -626,6 +661,11 @@ const AppProvider = ({ children }) => {
         activeRm,
         setActiveProd,
         setActiveRm,
+
+        setAddress,
+        address,
+
+        handleAddressChange,
       }}
     >
       {children}

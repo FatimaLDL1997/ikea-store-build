@@ -5,7 +5,7 @@
     },
   
     show: {
-      top: "0rem",
+      top: "50%",
       transition: {
         duration: 1,
         ease: "easeInOut",

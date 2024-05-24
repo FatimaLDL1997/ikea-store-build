@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Register, SignIn, Error, ProtectedRoute } from "./pages";
+import { Register, SignIn, Error, ProtectedRoute, AddressPopUp } from "./pages";
 import {
   Deals,
   Products,
   Rooms,
-  NotAvailable, 
+  NotAvailable,
   Under10,
   PlanningTools,
   BackToSchool,
@@ -19,6 +19,9 @@ import {
   NewProdDetail,
   AddedToCartSideMenu,
 } from "./pages/subProducts";
+import {
+  PopUp
+} from './components'
 
 function App() {
   return (
@@ -41,7 +44,6 @@ function App() {
           <Route path="under10" element={<Under10 />} />
           <Route path="planningtools" element={<PlanningTools />} />
           <Route path="backtoschool" element={<BackToSchool />} />
-
           <Route path="newproducts" element={<NewProducts />} />
           <Route path="all-new-products" element={<AllNewProducts />} />
           <Route
@@ -55,6 +57,9 @@ function App() {
             path="addedToCart"
             element={<div>{<AddedToCartSideMenu />}</div>}
           />
+          <Route path="/popup" element={<PopUp />} />
+          <Route path="/addresspopup" element={<AddressPopUp />} />
+
         </Route>
         <Route path="/login" element={<div>{<SignIn />}</div>} />
         <Route path="/register" element={<div>{<Register />}</div>} />

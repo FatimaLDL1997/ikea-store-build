@@ -1,11 +1,8 @@
 import { useAppContext } from "../context/appContext";
-import NavLinks from "./NavLinks";
-import Logo from "../components/Logo";
 import Wrapper from "../assets/wrappers/RightSidebar";
 import { GrFormClose } from "react-icons/gr";
-import { AiOutlineUser, AiOutlineRight } from "react-icons/ai";
+import { AiOutlineRight } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 const RightSidebar = () => {
   const {  showRightSidebar, toggleRightSidebar, user, logoutUser } =
@@ -24,10 +21,6 @@ const RightSidebar = () => {
     logoutUser();
     window.location.reload();
   };
-  // console.log(showRightSidebar);
-
-  // console.log(user);
-  useEffect(() => {}, [user]);
   return (
     <Wrapper>
       <div

@@ -7,6 +7,74 @@ const Wrapper = styled.nav`
   justify-content: center;
   box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.1);
   background: var(--white);
+ .address-input {
+  border-radius: 10px;
+  border: 1px solid grey;
+  margin-bottom: 2rem ;
+ }
+ .address-input:focus{
+  border-color: red;
+  outline: none;
+  /* box-shadow: 0px 0px 5px red; */
+  border:2px solid darkblue;
+ }
+
+  
+  .popup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .popup {
+    position: fixed;
+    top: 25vh;
+    /* left: 0vw; */
+  }
+  .popup-text {
+    position: absolute;
+    background: white;
+    width: 80vw;
+    height: 60vh;
+    border: 4px #1565c0 solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    overflow-y: scroll;
+
+    /* overflow-y: scroll; */
+
+    .title {
+      margin: 0;
+
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+  }
+  .cross-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 100%;
+    /* background-color: red; */
+  }
+  .cross-container svg {
+    /* padding: 10px; */
+    font-size: 1rem;
+  }
+  .cross-container:hover {
+    cursor: pointer;
+    color: #1565c0;
+  }
+
 
   .logo {
     display: flex;
@@ -325,12 +393,15 @@ const Wrapper = styled.nav`
     align-content: center;
     width: 100%;
     height: 100%;
+    text-transform: uppercase;
   }
   .loc-store h1 {
     font-size: 1rem;
     padding-right: 2rem;
     margin-bottom: 0;
     margin-left: 1rem;
+    
+
   }
 
   .loc-store-small {
@@ -346,6 +417,8 @@ const Wrapper = styled.nav`
     height: 100%;
     position: relative;
     padding-top: 1rem;
+    text-transform: uppercase;
+
   }
   .loc-store-small h1 {
     font-size: 1rem;
