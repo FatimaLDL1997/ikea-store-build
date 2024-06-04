@@ -1,19 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.40a76d73.css",
-    "main.js": "/static/js/main.92fcbd1d.js",
+    "main.css": "/static/css/main.32a7df64.css",
+    "main.js": "/static/js/main.df389eac.js",
+    "static/media/sorry.png": "/static/media/sorry.6717c043b8b5886d777d.png",
     "static/media/signupLarge.png": "/static/media/signupLarge.b7f3e2a49d5eda9e1463.png",
+    "static/media/ikea-bag.png": "/static/media/ikea-bag.5d672e11b9c5f05b3c07.png",
     "static/media/signup.png": "/static/media/signup.6c9a5b763c764348260c.png",
     "static/media/twogirls.jpg": "/static/media/twogirls.beebd3b3234cb40938ad.jpg",
     "static/media/loader.gif": "/static/media/loader.803f24369a085e35482e.gif",
     "static/media/loadingDots5.gif": "/static/media/loadingDots5.35b74e27e5788530aec6.gif",
+    "static/media/sad.jpg": "/static/media/sad.79a1210c6bf9c57ab6a3.jpg",
     "static/media/logo.svg": "/static/media/logo.52c4448f73af91990f4b76606ff6223b.svg",
     "index.html": "/index.html",
-    "main.40a76d73.css.map": "/static/css/main.40a76d73.css.map",
-    "main.92fcbd1d.js.map": "/static/js/main.92fcbd1d.js.map"
+    "main.32a7df64.css.map": "/static/css/main.32a7df64.css.map",
+    "main.df389eac.js.map": "/static/js/main.df389eac.js.map"
   },
   "entrypoints": [
-    "static/css/main.40a76d73.css",
-    "static/js/main.92fcbd1d.js"
+    "static/css/main.32a7df64.css",
+    "static/js/main.df389eac.js"
   ]
 }
