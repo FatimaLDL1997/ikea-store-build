@@ -295,7 +295,7 @@ const Navbar = () => {
               </div>
               <div className="mystore">
                 <TbBuildingStore />
-                <h1>Toronto Downtown - Aura</h1>
+                <h1>IKEA Store</h1>
               </div>
             </div>
           </div>
@@ -310,7 +310,7 @@ const Navbar = () => {
             </div>
             <div className="mystore">
               <TbBuildingStore />
-              <h1>Toronto Downtown - Aura</h1>
+              <h1>IKEA Store</h1>
             </div>
           </div>
         )}

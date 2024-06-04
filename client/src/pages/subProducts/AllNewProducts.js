@@ -174,7 +174,7 @@ const AllNewProducts = () => {
             <div className="total-items">{products.length} items</div>
           )}
         </div>
-        {/* <div className="filter-container">
+        <div className="filter-container">
           <Swiper
             className="swiper-slider-container"
             grabCursor={true}
@@ -235,7 +235,7 @@ const AllNewProducts = () => {
               );
             })}
           </Swiper>
-        </div> */}
+        </div>
 
         <div className="product-box">
           {products.map((product) => {

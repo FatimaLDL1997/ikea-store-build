@@ -13,7 +13,7 @@ const NotAvailable = () => {
       }}
     >
       <img style={{ width: "20rem" }} src={sadImg} />
-      Sorry you can't really checkout! Wish this is real IKEA. Click{" "}
+      Sorry you can't really checkout! Wish this was real IKEA. Click{" "}
 
       <a href="/main" style={{ cursor: "pointer", color: "blue" }}>here</a> to go to main menu. 
     </div>
